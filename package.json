@@ -17,10 +17,10 @@
     "semantic-ui-react": "^0.88.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "startreact": "cd client && react-scripts start",
+    "buildreact": "cd client && react-scripts build",
+    "testreact": "cd client && react-scripts test",
+    "ejectreact": "cd client && react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
