@@ -1,5 +1,6 @@
 {
   "name": "redux-mern-landing",
+  "homepage": "https://redux-servers.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
