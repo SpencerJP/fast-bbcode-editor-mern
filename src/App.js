@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import parser, { Tag } from "bbcode-to-react";
-import { Accordion, Segment, Dimmer, Loader } from "semantic-ui-react";
+import { Segment, Dimmer, Loader } from "semantic-ui-react";
 
 function CustomLoader() {
   return <Segment>
@@ -19,7 +19,17 @@ class NewLineTag extends Tag {
     );
   }
 }
-parser.registerTag('nl', NewLineTag); // replace exists tag
+
+class CenterAlignment extends Tag {
+  toReact() {
+    // using this.getComponents() to get children components.
+    return (
+      <div style={{ textAlign: "center" }}>{this.getComponents()}</div>
+    );
+  }
+}
+parser.registerTag('nl', NewLineTag); // new line tag
+parser.registerTag('cent', CenterAlignment); // new line tag
 
 
 function App() {
@@ -44,9 +54,11 @@ function App() {
 
   return (
     <div className="App">
-      <Accordion>
-        {bbComponentParent || <CustomLoader />}
-      </Accordion>
+      <div style={{ backgroundColor: "#583939", padding: "20px", borderRadius: "20px" }}>
+        <Segment style={{ padding: "40px", backgroundColor: "#222", borderRadius: "20px" }}>
+          {bbComponentParent ? bbComponentParent : <CustomLoader />}
+        </Segment>
+      </div>
     </div>
   );
 }
