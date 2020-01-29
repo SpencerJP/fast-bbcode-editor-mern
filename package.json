@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "FileReader": "^0.10.2",
     "bbcode-to-react": "^0.2.9",
+    "bufferjs": "^3.0.1",
     "express": "^4.17.1",
     "nodemon": "^2.0.2",
     "react": "^16.12.0",
