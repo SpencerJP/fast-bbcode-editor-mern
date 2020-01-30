@@ -3,7 +3,6 @@ import fetch from "node-fetch"
 import btoa from "btoa"
 
 const router = Router()
-
 const CLIENT_ID = process.env.CLIENT_ID
 const CLIENT_SECRET = process.env.CLIENT_SECRET
 const redirect = encodeURIComponent("http://localhost:50451/api/discord/callback")
@@ -30,7 +29,8 @@ router.get("/callback", async (req, res) => {
 		)
 		const json = await response.json()
 		console.log(json)
-		res.redirect(`/?token=${json.access_token}`)
+		req.session.discord_token = json.access_token
+		res.redirect(`/jbrules/`)
 	} catch (err) {
 		console.log(err)
 		res.status(400).send("Could not authorise discord.")

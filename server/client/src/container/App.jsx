@@ -19,7 +19,7 @@ function App() {
 			let data = await response.text()
 			data = "[nl]" + data
 			data = data.replace(/\n/g, "[/nl][nl]")
-			console.log(data)
+			// console.log(data)
 
 			setBbComponentParent(parser.toReact(data))
 			return data
