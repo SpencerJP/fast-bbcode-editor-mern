@@ -21,7 +21,7 @@
 	"scripts": {
 		"startexpress": "cd server && env-cmd -f ../.env.local nodemon index.js --exec babel-node --",
 		"startreact": "cd server && cd client && react-scripts start",
-		"buildreact": "cd server && cd client && env-cmd -f ../.env.local react-scripts build",
+		"buildreact": "cd server && cd client && env-cmd -f ../../.env.local react-scripts build",
 		"testreact": "cd server && cd client && react-scripts test",
 		"ejectreact": "cd server && cd client && react-scripts eject"
 	},

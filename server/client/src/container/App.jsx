@@ -9,6 +9,16 @@ import { Segment } from "semantic-ui-react"
 parser.registerTag("nl", NewLineTag) // new line tag
 parser.registerTag("cent", CenterAlignmentTag) // new line tag
 
+var getCookies = function() {
+	var pairs = document.cookie.split(";")
+	var cookies = {}
+	for (var i = 0; i < pairs.length; i++) {
+		var pair = pairs[i].split("=")
+		cookies[(pair[0] + "").trim()] = unescape(pair.slice(1).join("="))
+	}
+	return cookies
+}
+
 function App() {
 	const [bbComponentParent, setBbComponentParent] = React.useState(null)
 
@@ -24,8 +34,15 @@ function App() {
 			setBbComponentParent(parser.toReact(data))
 			return data
 		}
+		async function getDiscordUser() {
+			let dToken = getCookies().discord_token
+			if (dToken) {
+				console.log(dToken)
+			}
+		}
 		try {
 			fetchBbCodeAndSet()
+			getDiscordUser()
 		} catch (err) {
 			console.error(err)
 		}

@@ -29,7 +29,7 @@ router.get("/callback", async (req, res) => {
 			}
 		)
 		const json = await response.json()
-		res.cookie("discord_token", json.access_token, { maxAge: 900000, httpOnly: true })
+		res.cookie("discord_token", json.access_token, { maxAge: 900000, httpOnly: false })
 		res.redirect("/jbrules")
 	} catch (err) {
 		console.log(err)
