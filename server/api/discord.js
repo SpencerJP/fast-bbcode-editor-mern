@@ -1,6 +1,7 @@
 import { Router } from "express"
 import fetch from "node-fetch"
 import btoa from "btoa"
+import { getNodeText } from "@testing-library/react"
 
 const router = Router()
 const CLIENT_ID = process.env.CLIENT_ID
@@ -28,9 +29,8 @@ router.get("/callback", async (req, res) => {
 			}
 		)
 		const json = await response.json()
-		console.log(json)
-		req.session.discord_token = json.access_token
-		res.redirect(`/jbrules/`)
+		res.cookie("discord_token", json.access_token, { maxAge: 900000, httpOnly: true })
+		res.redirect("/jbrules")
 	} catch (err) {
 		console.log(err)
 		res.status(400).send("Could not authorise discord.")
