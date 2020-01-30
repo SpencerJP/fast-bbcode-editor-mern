@@ -1,40 +1,57 @@
 {
-  "name": "redux-mern-landing",
-  "homepage": "https://redux-servers.herokuapp.com/",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
-    "@testing-library/user-event": "^7.2.1",
-    "bbcode-parser": "^1.0.10",
-    "bbcode-to-react": "^0.2.9",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0",
-    "semantic-ui-react": "^0.88.2"
-  },
-  "scripts": {
-    "startreact": "cd client && react-scripts start",
-    "buildreact": "cd client && react-scripts build",
-    "testreact": "cd client && react-scripts test",
-    "ejectreact": "cd client && react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "redux-mern-landing",
+	"homepage": "https://redux-servers.herokuapp.com/",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@testing-library/jest-dom": "^4.2.4",
+		"@testing-library/react": "^9.4.0",
+		"@testing-library/user-event": "^7.2.1",
+		"bbcode-parser": "^1.0.10",
+		"bbcode-to-react": "^0.2.9",
+		"btoa": "^1.2.1",
+		"express": "^4.17.1",
+		"node-fetch": "^2.6.0",
+		"react": "^16.12.0",
+		"react-dom": "^16.12.0",
+		"react-scripts": "3.2.0",
+		"semantic-ui-react": "^0.88.2"
+	},
+	"scripts": {
+		"startexpress": "cd server && env-cmd -f ../.env.local nodemon index.js --exec babel-node --",
+		"startreact": "cd client && react-scripts start",
+		"buildreact": "cd client && react-scripts build",
+		"testreact": "cd client && react-scripts test",
+		"ejectreact": "cd client && react-scripts eject"
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.8.3",
+		"@babel/core": "^7.8.3",
+		"@babel/node": "^7.8.3",
+		"@babel/preset-env": "^7.8.3",
+		"env-cmd": "^10.0.1",
+		"eslint": "^6.5.1",
+		"eslint-config-standard": "^14.1.0",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-node": "^10.0.0",
+		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-standard": "^4.0.1",
+		"prettier": "^1.18.2",
+		"nodemon": "^2.0.2"
+	}
 }
