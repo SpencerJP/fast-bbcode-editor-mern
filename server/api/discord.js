@@ -1,12 +1,12 @@
 import { Router } from "express"
 import fetch from "node-fetch"
 import btoa from "btoa"
-import { getNodeText } from "@testing-library/react"
 
 const router = Router()
 const CLIENT_ID = process.env.CLIENT_ID
 const CLIENT_SECRET = process.env.CLIENT_SECRET
-const redirect = encodeURIComponent("http://localhost:50451/api/discord/callback")
+const REDIRECT_URL = `${process.env.REACT_APP_URL}/api/discord/callback`
+const redirect = encodeURIComponent(REDIRECT_URL)
 
 router.get("/login", (req, res) => {
 	res.redirect(
@@ -31,7 +31,7 @@ router.get("/callback", async (req, res) => {
 		const json = await response.json()
 		console.log(json)
 		res.cookie("discord_token", json.access_token, { maxAge: 900000, httpOnly: false })
-		res.redirect("/jbrules")
+		res.redirect("/index")
 	} catch (err) {
 		console.log(err)
 		res.status(400).send("Could not authorise discord.")

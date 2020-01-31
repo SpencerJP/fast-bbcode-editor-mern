@@ -71,6 +71,13 @@ app.post("/edit", function(req, res) {
 	res.send("POST request to the homepage")
 })
 
+app.get("*", (req, res) => {
+	if (req.cookies) {
+		console.log(req.cookies)
+	}
+	res.status(200).sendFile("index.html", { root })
+})
+
 app.listen(3005, () => {
 	console.info("Running on port 3005")
 })

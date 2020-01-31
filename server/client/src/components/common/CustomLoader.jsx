@@ -1,9 +1,9 @@
 import React from "react"
 import { Segment, Dimmer, Loader } from "semantic-ui-react"
 
-export default function CustomLoader() {
+export default function CustomLoader(props) {
 	return (
-		<Segment style={{ height: "1000px" }}>
+		<Segment style={props.style}>
 			<Dimmer active>
 				<Loader />
 			</Dimmer>
