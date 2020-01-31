@@ -1,10 +1,10 @@
 import React from "react"
 import "./App.css"
 import parser from "bbcode-to-react"
-import CustomLoader from "../components/common/CustomLoader"
-import NewLineTag from "../components/tags/NewLineTag"
-import CenterAlignmentTag from "../components/tags/CenterAlignmentTag"
-import { Segment } from "semantic-ui-react"
+import CustomLoader from "./components/common/CustomLoader"
+import NewLineTag from "./components/tags/NewLineTag"
+import CenterAlignmentTag from "./components/tags/CenterAlignmentTag"
+import { Segment, Button } from "semantic-ui-react"
 
 parser.registerTag("nl", NewLineTag) // new line tag
 parser.registerTag("cent", CenterAlignmentTag) // new line tag
@@ -20,6 +20,7 @@ var getCookies = function() {
 }
 
 function App() {
+	console.log(window)
 	const [bbComponentParent, setBbComponentParent] = React.useState(null)
 
 	React.useEffect(() => {
@@ -52,7 +53,7 @@ function App() {
 		<div className="App">
 			<div
 				style={{
-					backgroundColor: "#583939",
+					backgroundColor: "#5c4949",
 					padding: "20px",
 					borderRadius: "20px",
 				}}
@@ -66,6 +67,9 @@ function App() {
 				>
 					{bbComponentParent ? bbComponentParent : <CustomLoader />}
 				</Segment>
+				<Button color="blue" href={window.REACT_APP_URL + "/api/discord/login/"}>
+					Login
+				</Button>
 			</div>
 		</div>
 	)

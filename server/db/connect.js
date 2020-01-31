@@ -1,64 +1,64 @@
-import mysql from 'mysql'
+import mysql from "promise-mysql"
+const fs = require("fs")
+const { promisify } = require("util")
+
+const readFileAsync = promisify(fs.readFile)
+const writeFileAsync = promisify(fs.writeFile)
 
 export default class MySQLConnection {
+	constructor(host, user, password, db, port = 3306) {
+		this.dbConfig = {
+			host: host,
+			user: user,
+			port: port,
+			password: password,
+			database: db,
+		}
+	}
 
-    constructor(host, user, password, db) {
-        this.host = host
-        this.user = user
-        this.password = password
-        this.db = db
-    }
+	async setupTables() {
+		let rows
+		await this.query(`CREATE TABLE IF NOT EXISTS SITE_MESSAGE_DATA (
+            id varchar(25) NOT NULL,
+            PRIMARY KEY(id),
+            string mediumtext not null
+        )`)
 
-    testConnection() {
-        const conn = mysql.createConnection({
-            host: this.host,
-            user: this.user,
-            password: this.password,
-            db: this.db
-        });
-        conn.connect(function (err) {
-            if (err) throw err;
-        });
-        conn.end()
-    }
+		rows = await this.query(`SELECT *
+         FROM SITE_MESSAGE_DATA
+         WHERE id = "motd"`)
+		if (!rows.length) {
+			const data = await readFileAsync("./plaintextdata_placeholder/defaultmotd.bbcode", "utf8")
+			rows = await this.query(
+				`INSERT INTO SITE_MESSAGE_DATA
+                    VALUES("motd", ?)`,
+				[data]
+			)
+			rows = await this.query(`SELECT *
+                                    FROM SITE_MESSAGE_DATA
+                                    WHERE id = "motd"`)
 
-    query(query) {
-        let result
-        const conn = mysql.createConnection({
-            host: this.host,
-            user: this.user,
-            password: this.password,
-            db: this.db
-        });
-        conn.connect(function (err) {
-            if (err) throw err;
-            conn.query(sqlStatement, function (err, response) {
-                if (err) throw err;
-                result = response
-            });
-        });
-        conn.end()
-        return result
-    }
+			if (!rows.length) {
+				throw new Error("Insert statement didn't work?")
+			}
+		}
 
-    // executeStatement(sqlStatement) {
-    //     let result
-    //     const conn = mysql.createConnection({
-    //         host: this.host,
-    //         user: this.user,
-    //         password: this.password,
-    //         db: this.db
-    //     });
-    //     conn.connect(function (err) {
-    //         if (err) throw err;
-    //         conn.query(sqlStatement, function (err, response) {
-    //             if (err) throw err;
-    //             result = response
-    //         });
-    //     });
-    //     conn.end()
-    //     return result
-    // }
+		return rows
+	}
 
-
+	async query(...query) {
+		let result
+		let conn
+		try {
+			conn = await mysql.createConnection(this.dbConfig)
+			result = await conn.query(...query)
+			if (conn && conn.end) {
+				conn.end()
+			}
+		} catch (err) {
+			conn.end()
+			throw err
+		}
+		return result
+	}
 }

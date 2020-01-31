@@ -12,16 +12,19 @@
 		"cookie-parser": "^1.4.4",
 		"cookie-session": "^1.4.0",
 		"express": "^4.17.1",
-		"mysql": "^2.18.1",
+		"http-proxy-middleware": "^0.20.0",
 		"node-fetch": "^2.6.0",
+		"promise-mysql": "^4.1.2",
 		"react": "^16.12.0",
 		"react-dom": "^16.12.0",
 		"react-scripts": "3.2.0",
-		"semantic-ui-react": "^0.88.2"
+		"react-spring": "^8.0.27",
+		"semantic-ui-react": "^0.88.2",
+		"styled-components": "^5.0.0"
 	},
 	"scripts": {
 		"startexpress": "cd server && env-cmd -f ../.env.local nodemon index.js --exec babel-node --",
-		"startreact": "cd server && cd client && react-scripts start",
+		"startreact": "cd server && cd client && env-cmd -f ../../.env.local react-scripts start",
 		"buildreact": "cd server && cd client && env-cmd -f ../../.env.local react-scripts build",
 		"testreact": "cd server && cd client && react-scripts test",
 		"ejectreact": "cd server && cd client && react-scripts eject"
