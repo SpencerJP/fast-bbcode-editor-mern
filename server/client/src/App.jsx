@@ -1,11 +1,11 @@
 import React from "react"
 import "./App.css"
-import NewLineTag from "./components/tags/NewLineTag"
+import LineBreakTag from "./components/tags/LineBreakTag"
 import CenterAlignmentTag from "./components/tags/CenterAlignmentTag"
 import parser from "bbcode-to-react"
 import MOTD from "./container/MOTD"
 
-parser.registerTag("nl", NewLineTag) // new line tag
+parser.registerTag("br", LineBreakTag) // new line tag
 parser.registerTag("cent", CenterAlignmentTag) // new line tag
 
 function App() {

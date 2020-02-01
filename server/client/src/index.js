@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import "./index.css"
 import App from "./App.jsx"
 import { Provider } from "react-redux"
-import { CookiesProvider } from "react-cookies"
+import { CookiesProvider } from "react-cookie"
 import * as serviceWorker from "./serviceWorker"
 import store from "./redux/store"
 

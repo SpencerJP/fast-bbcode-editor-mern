@@ -40,10 +40,8 @@ app.use(cookieParser())
 
 app.get("/rules", async (req, res) => {
 	try {
-		let rows = await db.query(`SELECT string
-		FROM SITE_MESSAGE_DATA
-		WHERE id = "motd"`)
-		res.status(200).send(rows[0].string)
+		let string = await db.getSiteMOTD()
+		res.status(200).send(string)
 	} catch (err) {
 		res.status(400).send(err)
 	}

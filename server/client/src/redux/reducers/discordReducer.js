@@ -1,5 +1,6 @@
 const initialState = {
 	discordUserObject: null,
+	authorizedUsers: [],
 }
 
 export default function(state = initialState, action) {

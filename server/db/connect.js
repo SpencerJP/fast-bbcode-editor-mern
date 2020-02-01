@@ -22,7 +22,18 @@ export default class MySQLConnection {
             id varchar(25) NOT NULL,
             PRIMARY KEY(id),
             string mediumtext not null
-        )`)
+		)`)
+
+		await this.query(`CREATE TABLE IF NOT EXISTS WEBSITE_ACCESS_DISCORD_IDS (
+            discord_id varchar(40) NOT NULL,
+			PRIMARY KEY(discord_id)
+		)`)
+
+		await this.query(`CREATE TABLE IF NOT EXISTS DISCORD_API_TOKENS (
+            discord_token varchar(40) NOT NULL,
+			PRIMARY KEY(discord_token),
+			refresh_token varchar(40) NOT NULL
+		)`)
 
 		rows = await this.query(`SELECT *
          FROM SITE_MESSAGE_DATA
@@ -60,5 +71,16 @@ export default class MySQLConnection {
 			throw err
 		}
 		return result
+	}
+
+	async getAuthedUsers() {
+		return await this.query(`SELECT * FROM WEBSITE_ACCESS_DISCORD_IDS`)
+	}
+
+	async getSiteMOTD() {
+		let rows = await this.query(`SELECT *
+		FROM SITE_MESSAGE_DATA
+		WHERE id = "motd"`)
+		return rows[0].string
 	}
 }
