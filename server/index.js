@@ -1,6 +1,7 @@
 import express from "express"
 import discordApi from "./api/discord"
 import DB from "./db/connect"
+import fetch from 'node-fetch'
 var cookieParser = require("cookie-parser")
 
 var cookieSession = require("cookie-session")
@@ -66,7 +67,18 @@ app.get("/setup", async (req, res) => {
 })
 
 app.post("/edit", function(req, res) {
-	res.send("POST request to the homepage")
+	let currentUser = await fetch("https://discordapp.com/api/users/@me", {
+		headers: req.headers
+	})
+	if(currentUser) {
+		if (await db.query(`SELECT * FROM WEBSITE_ACCESS_DISCORD_IDS WHERE discord_id = ?`, [currentUser.id])) {
+
+			let updatedText = req.body
+			await db.query(`UPDATE SITE_MESSAGE_DATA SET string = ? WHERE id = "motd"`, [updatedText])
+		}
+	}
+
+	next()	
 })
 
 app.get("*", (req, res) => {

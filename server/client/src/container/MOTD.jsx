@@ -76,9 +76,7 @@ export default function MOTDScreen(props) {
 								</StyledSegmentInner>
 							</Grid.Column>
 							<Grid.Column width={6}>
-								{user && (user.id === "290097917388128258" || user.id === "150623388036104192") && (
-									<EditBox rawBBCode={rawBBCode} setRawBBCode={setRawBBCode} />
-								)}
+								<EditBox rawBBCode={rawBBCode} setRawBBCode={setRawBBCode} />
 							</Grid.Column>
 						</Grid.Row>
 						<Grid.Row>
