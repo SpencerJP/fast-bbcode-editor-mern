@@ -73,7 +73,7 @@ app.post("/edit", async function(req, res) {
 	try {
 		let discord_token = req.cookies.discord_token
 		let updatedText = req.body
-		console.log(req)
+		console.log(req.body)
 		let currentUser = await fetch("https://discordapp.com/api/users/@me", {
 			headers: {
 				"Content-Type": "application/json",
