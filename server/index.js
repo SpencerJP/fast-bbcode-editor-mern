@@ -3,7 +3,7 @@ import discordApi from "./api/discord"
 import DB from "./db/connect"
 import fetch from "node-fetch"
 var cookieParser = require("cookie-parser")
-
+var jsonBodyParser = require("body-parser").json()
 var cookieSession = require("cookie-session")
 
 var db = new DB(
@@ -22,7 +22,7 @@ var db = new DB(
 // `)
 
 const app = express()
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", process.env.REACT_URL) // update to match the domain you will make the request from
 	res.header(
 		"Access-Control-Allow-Headers",
@@ -69,10 +69,11 @@ app.get("/setup", async (req, res) => {
 	}
 })
 
-app.post("/edit", async function(req, res) {
+app.post("/edit", jsonBodyParser, async function (req, res) {
 	try {
 		let discord_token = req.cookies.discord_token
-		let updatedText = req.body
+
+		let updatedText = req.body.data
 		console.log(req.body)
 		let currentUser = await fetch("https://discordapp.com/api/users/@me", {
 			headers: {
@@ -94,9 +95,11 @@ app.post("/edit", async function(req, res) {
 			}
 		}
 	} catch (err) {
+		res.send(req.body)
 		console.log(err)
+		// res.status(400).send(err)
 	}
-
+	res.status(200).send()
 	// next()
 })
 
