@@ -30,6 +30,7 @@
 		"styled-components": "^5.0.0"
 	},
 	"scripts": {
+		"start": "cd server && cd client && env-cmd -f ../../.env.local react-scripts build && cd ../ && env-cmd -f ../.env.local nodemon index.js --exec babel-node --",
 		"startexpress": "cd server && env-cmd -f ../.env.local nodemon index.js --exec babel-node --",
 		"startreact": "cd server && cd client && env-cmd -f ../../.env.local react-scripts start",
 		"buildreact": "cd server && cd client && env-cmd -f ../../.env.local react-scripts build",
