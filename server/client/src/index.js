@@ -9,9 +9,9 @@ import store from "./redux/store"
 
 ReactDOM.render(
 	<Provider store={store}>
-		<CookiesProvider />
-		<App />
-		<CookiesProvider />
+		<CookiesProvider>
+			<App />
+		</CookiesProvider>
 	</Provider>,
 	document.getElementById("root")
 )

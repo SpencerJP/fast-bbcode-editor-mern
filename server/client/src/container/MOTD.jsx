@@ -3,9 +3,10 @@ import CustomLoader from "../components/common/CustomLoader"
 import { Segment, Grid } from "semantic-ui-react"
 import DiscordAuth from "../components/common/DiscordAuth"
 import styled from "styled-components"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import EditBox from "../components/common/EditBox"
 import { useWindowSize } from "../hooks/useWindowSize"
+import { fetchMOTD } from "../redux/actions/messageActions"
 
 const StyledSegmentInner = styled(Segment)`
 	&&& {
@@ -34,31 +35,28 @@ const ExternalDiv = styled.div`
 
 export default function MOTDScreen(props) {
 	const { height } = useWindowSize()
-	const [rawBBCode, setRawBBCode] = React.useState(null)
+	const rawBBCode = useSelector(state => state.messageReducer.motd)
+	const isLoading = useSelector(state => state.messageReducer.loadingStatusMotd)
 	const user = useSelector(state => state.discordReducer.discordUserObject)
+	const dispatch = useDispatch()
 
 	let rawBBCodeWithNewLines = rawBBCode
 	if (rawBBCode) {
 		rawBBCodeWithNewLines = rawBBCodeWithNewLines.replace(/\n/g, "[br][/br]")
 	}
-	console.log(rawBBCodeWithNewLines)
 
 	React.useEffect(() => {
-		async function fetchBbCodeAndSet() {
-			let response = await fetch("/rules")
-
-			let data = await response.text()
-			setRawBBCode(data)
-			return data
-		}
 		try {
-			fetchBbCodeAndSet()
+			dispatch(fetchMOTD())
 		} catch (err) {
 			console.error(err)
 		}
-	}, [props.parser])
+	}, [dispatch, props.parser])
 
-	if (user && (user.id === "290097917388128258" || user.id === "150623388036104192")) {
+	if (
+		user &&
+		(user.id === "290097917388128258" || user.id === "150623388036104192")
+	) {
 		return (
 			<div className="App">
 				<ExternalDiv>
@@ -66,7 +64,7 @@ export default function MOTDScreen(props) {
 						<Grid.Row>
 							<Grid.Column width={10}>
 								<StyledSegmentInner user={user}>
-									{rawBBCode ? (
+									{!isLoading ? (
 										<DataScroll heightString={`height: ${height - 113}px;`}>
 											{props.parser.toReact(rawBBCodeWithNewLines)}
 										</DataScroll>
@@ -76,7 +74,7 @@ export default function MOTDScreen(props) {
 								</StyledSegmentInner>
 							</Grid.Column>
 							<Grid.Column width={6}>
-								<EditBox rawBBCode={rawBBCode} setRawBBCode={setRawBBCode} />
+								<EditBox />
 							</Grid.Column>
 						</Grid.Row>
 						<Grid.Row>
@@ -91,7 +89,7 @@ export default function MOTDScreen(props) {
 			<div className="App">
 				<ExternalDiv>
 					<StyledSegmentInner user={user}>
-						{rawBBCode ? (
+						{!isLoading ? (
 							props.parser.toReact(rawBBCodeWithNewLines)
 						) : (
 							<CustomLoader style={{ height: "1000px" }} />

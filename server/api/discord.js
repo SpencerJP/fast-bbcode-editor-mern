@@ -37,18 +37,27 @@ router.get("/callback", async (req, res) => {
 			}
 		)
 		const json = await response.json()
-		console.log(json)
 		if (json.access_token && json.refresh_token) {
-			try {
-				db.query(`INSERT INTO DISCORD_API_TOKENS VALUES(?, ?)`, [json.access_token, json.refresh_token])
-			} catch (err) {
-				if (!err.message.includes("ER_DUP_ENTRY")) {
-					throw err
-				}
-			}
+			db.queryWithCustomErrorHandler(
+				err => {
+					if (!err.message.includes("ER_DUP_ENTRY")) {
+						throw err
+					}
+				},
+				`INSERT INTO DISCORD_API_TOKENS VALUES(?, ?)`,
+				[json.access_token, json.refresh_token]
+			)
 		}
-		res.cookie("discord_token", json.access_token, { maxAge: 900000, httpOnly: false })
-		res.redirect("/index")
+		res.cookie("discord_token", json.access_token, {
+			maxAge: 900000,
+			httpOnly: false,
+		})
+		if (process.env.NODE_ENV !== "production") {
+			// workaround to allow for dev work
+			res.redirect(`${process.env.REACT_APP_FRONTEND_URL}`)
+		} else {
+			res.redirect("/index")
+		}
 	} catch (err) {
 		console.log(err)
 		res.status(400).send("Could not authorise discord.")

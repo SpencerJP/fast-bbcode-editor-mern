@@ -1,15 +1,19 @@
 import React from "react"
-import { Button, Image, Grid } from "semantic-ui-react"
+import { Button, Image, Grid, Icon } from "semantic-ui-react"
 import { useSelector, useDispatch } from "react-redux"
 import { useCookies } from "react-cookie"
 import styled from "styled-components"
-import { getDiscordUserObject, deleteDiscordUserObject } from "../../redux/actions/discordApiActions"
+import {
+	getDiscordUserObject,
+	deleteDiscordUserObject,
+} from "../../redux/actions/discordApiActions"
 
 const Avatar = styled(Image)`
 	&&&&&& {
 		border-radius: 50%;
 		max-width: 40px;
 		height: auto;
+		// margin-left: 6em;
 	}
 `
 
@@ -18,7 +22,19 @@ const LoginLogoutButton = styled(Button)`
 		background-color: #7289da;
 		color: #fff;
 		min-height: 40px;
+		min-width: 160px;
 	}
+`
+
+const DiscordLogo = styled.img`
+	max-width: 35px;
+	height: auto;
+	float: left;
+`
+
+const TextAlignment = styled.span`
+	font-size: 16px;
+	line-height: 2em;
 `
 
 export default function DiscordAuth() {
@@ -48,33 +64,42 @@ export default function DiscordAuth() {
 	}, [cookies.discord_token, dispatch])
 	if (user) {
 		return (
-			<Grid>
-				<Grid.Row>
-					<Grid.Column width={1}>
-						<LoginLogoutButton
-							color="blue"
-							onClick={() => {
-								removeCookie("discord_token")
-								dispatch(deleteDiscordUserObject())
-							}}
-						>
-							Logout
-						</LoginLogoutButton>
-					</Grid.Column>
-					<Grid.Column width={1} style={{ marginLeft: "30px" }}>
-						<Avatar
-							className="discord-avatar"
-							id="avatar"
-							src={`http://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+			<>
+				<Grid.Column style={{ minWidth: "160px" }}>
+					<LoginLogoutButton
+						color="blue"
+						onClick={() => {
+							removeCookie("discord_token")
+							dispatch(deleteDiscordUserObject())
+						}}
+					>
+						<DiscordLogo
+							src="https://discordapp.com/assets/1c8a54f25d101bdc607cec7228247a9a.svg"
+							alt="discord icon"
 						/>
-					</Grid.Column>
-				</Grid.Row>
-			</Grid>
+						<TextAlignment>Logout</TextAlignment>
+					</LoginLogoutButton>
+				</Grid.Column>
+				<Grid.Column width={2} style={{ textAlign: "center" }}>
+					<Avatar
+						className="discord-avatar"
+						id="avatar"
+						src={`http://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+					/>
+				</Grid.Column>
+			</>
 		)
 	} else {
 		return (
-			<LoginLogoutButton color="blue" href={window.REACT_APP_URL + "/api/discord/login/"}>
-				Login
+			<LoginLogoutButton
+				color="blue"
+				href={window.REACT_APP_URL + "/api/discord/login/"}
+			>
+				<DiscordLogo
+					src="https://discordapp.com/assets/1c8a54f25d101bdc607cec7228247a9a.svg"
+					alt="discord icon"
+				/>
+				<TextAlignment>Login</TextAlignment>
 			</LoginLogoutButton>
 		)
 	}

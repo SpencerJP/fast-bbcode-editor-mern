@@ -2,6 +2,9 @@ import React from "react"
 import { Segment, Button, Form } from "semantic-ui-react"
 import { useWindowSize } from "../../hooks/useWindowSize"
 import styled from "styled-components"
+import { useCookies } from "react-cookie"
+import { useDispatch, useSelector } from "react-redux"
+import { getMOTD, fetchMOTD } from "../../redux/actions/messageActions"
 
 const StyledTextArea = styled(Form.TextArea)`
 	font-family: Tahoma, Verdana, Segoe, sans-serif;
@@ -14,17 +17,28 @@ const StyledTextArea = styled(Form.TextArea)`
 
 export default function EditBox(props) {
 	const { height } = useWindowSize()
+	const rawBBCode = useSelector(state => state.messageReducer.motd)
+	const isLoading = useSelector(
+		state => state.messageReducer.loadingStatusEditBox
+	)
+	const [cookies] = useCookies(["discord_token"])
+	const dispatch = useDispatch()
 	const onChange = (e, { value }) => {
 		e.preventDefault()
-		props.setRawBBCode(value)
+		dispatch(getMOTD(value))
 	}
 
-	const handleClick = (e, ...args) => {
+	const handleClick = async e => {
 		e.preventDefault()
-		fetch("/index", {
+		await fetch("/edit", {
 			method: "POST",
 			body: props.rawBBCode,
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${cookies.discord_token}`,
+			},
 		})
+		dispatch(fetchMOTD())
 	}
 
 	return (
@@ -32,12 +46,17 @@ export default function EditBox(props) {
 			<Form>
 				<StyledTextArea
 					type="text"
-					defaultValue={props.rawBBCode}
+					defaultValue={rawBBCode}
 					onChange={onChange}
 					style={{ height: `${height - 100}px` }}
 				/>
 			</Form>
-			<Button onClick={handleClick} color="blue" style={{ marginTop: "3px" }}>
+			<Button
+				onClick={handleClick}
+				color="blue"
+				style={{ marginTop: "3px" }}
+				loading={isLoading}
+			>
 				Save
 			</Button>
 		</Segment>

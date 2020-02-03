@@ -39,7 +39,10 @@ export default class MySQLConnection {
          FROM SITE_MESSAGE_DATA
          WHERE id = "motd"`)
 		if (!rows.length) {
-			const data = await readFileAsync("./plaintextdata_placeholder/defaultmotd.bbcode", "utf8")
+			const data = await readFileAsync(
+				"./plaintextdata_placeholder/defaultmotd.bbcode",
+				"utf8"
+			)
 			rows = await this.query(
 				`INSERT INTO SITE_MESSAGE_DATA
                     VALUES("motd", ?)`,
@@ -69,6 +72,27 @@ export default class MySQLConnection {
 		} catch (err) {
 			conn.end()
 			throw err
+		}
+		return result
+	}
+
+	async queryWithCustomErrorHandler(errHandler, ...query) {
+		let result
+		let conn
+		try {
+			conn = await mysql.createConnection(this.dbConfig)
+			result = await conn.query(...query)
+			if (conn && conn.end) {
+				conn.end()
+			}
+		} catch (err) {
+			if (errHandler && typeof errHandler === "function") {
+				conn.end()
+				errHandler(err)
+			} else {
+				conn.end()
+				throw err
+			}
 		}
 		return result
 	}

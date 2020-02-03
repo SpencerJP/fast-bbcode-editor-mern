@@ -1,7 +1,7 @@
 import express from "express"
 import discordApi from "./api/discord"
 import DB from "./db/connect"
-import fetch from 'node-fetch'
+import fetch from "node-fetch"
 var cookieParser = require("cookie-parser")
 
 var cookieSession = require("cookie-session")
@@ -24,13 +24,16 @@ var db = new DB(
 const app = express()
 app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", process.env.REACT_URL) // update to match the domain you will make the request from
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+	res.header(
+		"Access-Control-Allow-Headers",
+		"Origin, X-Requested-With, Content-Type, Accept"
+	)
 	next()
 })
 app.use(
 	cookieSession({
 		name: "session",
-		secret: "testSecret",
+		secret: process.env.SESSION_SECRET,
 		// Cookie Options
 		maxAge: 24 * 60 * 60 * 1000, // 24 hours
 	})
@@ -66,25 +69,38 @@ app.get("/setup", async (req, res) => {
 	}
 })
 
-app.post("/edit", function(req, res) {
-	let currentUser = await fetch("https://discordapp.com/api/users/@me", {
-		headers: req.headers
-	})
-	if(currentUser) {
-		if (await db.query(`SELECT * FROM WEBSITE_ACCESS_DISCORD_IDS WHERE discord_id = ?`, [currentUser.id])) {
-
-			let updatedText = req.body
-			await db.query(`UPDATE SITE_MESSAGE_DATA SET string = ? WHERE id = "motd"`, [updatedText])
+app.post("/edit", async function(req, res) {
+	try {
+		let discord_token = req.cookies.discord_token
+		let updatedText = req.body
+		console.log(req)
+		let currentUser = await fetch("https://discordapp.com/api/users/@me", {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${discord_token}`,
+			},
+		})
+		if (currentUser) {
+			if (
+				await db.query(
+					`SELECT * FROM WEBSITE_ACCESS_DISCORD_IDS WHERE discord_id = ?`,
+					[currentUser.id]
+				)
+			) {
+				await db.query(
+					`UPDATE SITE_MESSAGE_DATA SET string = ? WHERE id = "motd"`,
+					[updatedText]
+				)
+			}
 		}
+	} catch (err) {
+		console.log(err)
 	}
 
-	next()	
+	// next()
 })
 
 app.get("*", (req, res) => {
-	if (req.cookies) {
-		console.log(req.cookies)
-	}
 	res.status(200).sendFile("index.html", { root })
 })
 
