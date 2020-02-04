@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, Image, Grid, Icon } from "semantic-ui-react"
+import { Button, Image, Grid } from "semantic-ui-react"
 import { useSelector, useDispatch } from "react-redux"
 import { useCookies } from "react-cookie"
 import styled from "styled-components"

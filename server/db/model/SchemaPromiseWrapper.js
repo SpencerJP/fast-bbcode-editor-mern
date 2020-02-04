@@ -22,9 +22,21 @@ export default class SchemaPromiseWrapper {
 		const result = await query.exec()
 		return result
 	}
-
 	async update(...args) {
-		const query = this[this.constructor.name + "Model"].update(...args)
+		console.error("update (...args) deprecated")
+		const query = this[this.constructor.name + "Model"].updateOne(...args)
+		const result = await query.exec()
+		return result
+	}
+
+	async updateOne(...args) {
+		const query = this[this.constructor.name + "Model"].updateOne(...args)
+		const result = await query.exec()
+		return result
+	}
+
+	async updateMany(...args) {
+		const query = this[this.constructor.name + "Model"].updateMany(...args)
 		const result = await query.exec()
 		return result
 	}
