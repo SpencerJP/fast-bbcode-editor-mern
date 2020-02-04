@@ -37,22 +37,6 @@ class MongoConnectionLayer {
 				_id: String,
 			}
 		)
-		// try {
-		// 	let rows = await mySQLDB.getAuthedUsers()
-		// 	for (let i = 0; i < rows.length; i++) {
-		// 		await this.discordAuthorizedUserIDs.insert({ _id: rows[i].discord_id })
-		// 	}
-		// }
-		// catch (err) {
-		// 	console.log(err)
-		// }
-		// try {
-		// 	let siteMotd = await mySQLDB.getSiteMOTD()
-		// 	await this.siteMessageDataModel.insert({ _id: "motd", string: siteMotd })
-		// }
-		// catch (err) {
-		// 	console.log(err)
-		// }
 		return this.getSiteMOTD()
 	}
 
