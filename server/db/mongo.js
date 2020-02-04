@@ -56,10 +56,16 @@ class MongoConnectionLayer {
 		)
 	}
 	async addDiscordToken(access_token, refresh_token) {
-		return await this.discordApiTokens.insert({
-			_id: access_token,
-			refresh_token: refresh_token,
-		})
+		try {
+
+			return await this.discordApiTokens.insert({
+				_id: access_token,
+				refresh_token: refresh_token,
+			})
+		}
+		catch (err) {
+
+		}
 	}
 
 	async getSiteMOTD() {
