@@ -1,20 +1,13 @@
 import React from "react"
 import "./App.css"
-import LineBreakTag from "./components/tags/LineBreakTag"
-import CenterAlignmentTag from "./components/tags/CenterAlignmentTag"
-import parser from "bbcode-to-react"
-import MOTD from "./container/MOTD"
-import CommentTag from "./components/tags/CommentTag"
+import MOTD from "./container/MOTD/MOTD"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { Provider } from "react-redux"
 import { CookiesProvider } from "react-cookie"
 import store from "./redux/store"
-import LoadingScreen from "./container/LoadingScreen"
-
-parser.registerTag("br", LineBreakTag) // new line tag
-parser.registerTag("cent", CenterAlignmentTag) // new line tag
-parser.registerTag("comment", CommentTag) // new line tag
-
+import LoadingScreen from "./container/LoadingScreen/LoadingScreen"
+import CustomParser from "./components/tags/CustomParser"
+const parser = CustomParser()
 function App() {
 	return (
 		<Provider store={store}>

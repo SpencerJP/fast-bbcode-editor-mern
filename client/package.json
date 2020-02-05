@@ -2,7 +2,7 @@
 	"name": "redux-mern-landing",
 	"homepage": "https://redux-servers.herokuapp.com/",
 	"version": "0.1.0",
-	"proxy": "http://localhost:3005",
+	"proxy": "http://localhost:3009",
 	"private": true,
 	"dependencies": {
 		"@testing-library/jest-dom": "^4.2.4",

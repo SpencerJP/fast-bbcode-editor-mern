@@ -1,12 +1,13 @@
 import React from "react"
-import CustomLoader from "../components/common/CustomLoader"
+import CustomLoader from "../../components/common/CustomLoader/CustomLoader"
 import { Segment, Grid } from "semantic-ui-react"
-import DiscordAuth from "../components/common/DiscordAuth"
+import DiscordAuth from "../../components/common/DiscordAuth/DiscordAuth"
 import styled from "styled-components"
 import { useSelector, useDispatch } from "react-redux"
-import EditBox from "../components/common/EditBox"
-import { useWindowSize } from "../hooks/useWindowSize"
-import { fetchMOTD } from "../redux/actions/messageActions"
+import EditBox from "../../components/common/EditBox/EditBox"
+import { useWindowSize } from "../../hooks/useWindowSize"
+import { fetchMOTD } from "../../redux/actions/messageActions"
+import { useOnMountFetch } from "../../hooks/useOnMountFetch"
 
 const StyledSegmentInner = styled(Segment)`
 	&&& {
@@ -40,18 +41,12 @@ export default function MOTDScreen(props) {
 	const user = useSelector(state => state.discordReducer.discordUserObject)
 	const dispatch = useDispatch()
 
+	useOnMountFetch(dispatch, fetchMOTD)
+
 	let rawBBCodeWithNewLines = rawBBCode
 	if (rawBBCode) {
 		rawBBCodeWithNewLines = rawBBCodeWithNewLines.replace(/\n/g, "[br][/br]")
 	}
-
-	React.useEffect(() => {
-		try {
-			dispatch(fetchMOTD())
-		} catch (err) {
-			console.error(err)
-		}
-	}, [dispatch, props.parser])
 
 	if (
 		user &&

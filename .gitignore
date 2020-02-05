@@ -13,6 +13,9 @@
 /client/build
 /client/node_modules/
 
+/server/stderr.txt
+/server/stdout.txt
+
 
 # misc
 .DS_Store

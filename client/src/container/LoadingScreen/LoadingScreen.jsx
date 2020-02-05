@@ -1,6 +1,6 @@
 import React from "react"
 // import Media from "react-media"
-import { useWindowSize } from "../hooks/useWindowSize"
+import { useWindowSize } from "../../hooks/useWindowSize"
 import styled from "styled-components"
 import "./LoadingScreen.css"
 

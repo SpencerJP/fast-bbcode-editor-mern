@@ -1,6 +1,6 @@
 import React from "react"
 import { Segment, Button, Form } from "semantic-ui-react"
-import { useWindowSize } from "../../hooks/useWindowSize"
+import { useWindowSize } from "../../../hooks/useWindowSize"
 import styled from "styled-components"
 import { useCookies } from "react-cookie"
 import { useDispatch, useSelector } from "react-redux"
@@ -8,7 +8,7 @@ import {
 	getMOTD,
 	fetchMOTD,
 	setLoadingStatusEditBox,
-} from "../../redux/actions/messageActions"
+} from "../../../redux/actions/messageActions"
 
 const StyledTextArea = styled(Form.TextArea)`
 	font-family: Tahoma, Verdana, Segoe, sans-serif;
