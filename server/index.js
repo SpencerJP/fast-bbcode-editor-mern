@@ -6,6 +6,7 @@ import MongoDB from "./db/mongo"
 var cookieParser = require("cookie-parser")
 var jsonBodyParser = require("body-parser").json()
 var cookieSession = require("cookie-session")
+const path = require("path")
 
 // const db = MySQLDB.constructDefault()
 const mongoDB = MongoDB()
@@ -28,8 +29,8 @@ app.use(
 		maxAge: 24 * 60 * 60 * 1000, // 24 hours
 	})
 )
-const root = require("path").join(__dirname, "..", "client", "build")
-app.use(express.static(root))
+// const root = require("path").join(__dirname, "..", "client", "build")
+// app.use(express.static(root))
 app.use(cookieParser())
 
 app.get("/rules", async (req, res) => {
@@ -42,10 +43,6 @@ app.get("/rules", async (req, res) => {
 })
 
 app.use("/api/discord", discordApi)
-
-app.get("/index", (req, res) => {
-	res.status(200).sendFile("index.html", { root })
-})
 
 app.get("/setup", async (req, res) => {
 	try {
@@ -95,9 +92,12 @@ app.post("/edit", jsonBodyParser, async function(req, res, next) {
 	}
 	next()
 })
-
-app.get("*", (req, res) => {
-	res.status(200).sendFile("index.html", { root })
+app.use(
+	"/static",
+	express.static(path.join(__dirname, "../client/build//static"))
+)
+app.get("*", function(req, res) {
+	res.sendFile("index.html", { root: path.join(__dirname, "../client/build/") })
 })
 
 const port = process.env.EXPRESS_PORT
