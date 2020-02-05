@@ -33,6 +33,7 @@
 		"styled-components": "^5.0.0"
 	},
 	"scripts": {
+		"startserver": "npm install && cd client && env-cmd -f ../.env.local react-scripts build && cd ../server && env-cmd -f ../.env.local nodemon index.js --exec babel-node -- > stdout.txt 2> stderr.txt &",
 		"start": "npm install && cd client && env-cmd -f ../.env.local react-scripts build && cd ../server && env-cmd -f ../.env.local nodemon index.js --exec babel-node --",
 		"startexpress": "cd server && env-cmd -f ../.env.local nodemon index.js --exec babel-node --",
 		"startreact": "cd client && env-cmd -f ../.env.local react-scripts start",
