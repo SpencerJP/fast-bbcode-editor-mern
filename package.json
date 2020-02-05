@@ -8,11 +8,13 @@
 		"@testing-library/user-event": "^7.2.1",
 		"bbcode-parser": "^1.0.10",
 		"bbcode-to-react": "^0.2.9",
+		"body-parser": "^1.19.0",
 		"btoa": "^1.2.1",
 		"cookie-parser": "^1.4.4",
 		"cookie-session": "^1.4.0",
 		"express": "^4.17.1",
 		"http-proxy-middleware": "^0.20.0",
+		"mongoose": "^5.8.11",
 		"node-fetch": "^2.6.0",
 		"promise-mysql": "^4.1.2",
 		"react": "^16.12.0",
@@ -30,12 +32,12 @@
 		"styled-components": "^5.0.0"
 	},
 	"scripts": {
-		"start": "cd server && cd client && env-cmd -f ../../.env.local react-scripts build && cd ../ && env-cmd -f ../.env.local nodemon index.js --exec babel-node --",
+		"start": "npm install && cd client && env-cmd -f ../.env.local react-scripts build && cd ../server && env-cmd -f ../.env.local nodemon index.js --exec babel-node --",
 		"startexpress": "cd server && env-cmd -f ../.env.local nodemon index.js --exec babel-node --",
-		"startreact": "cd server && cd client && env-cmd -f ../../.env.local react-scripts start",
-		"buildreact": "cd server && cd client && env-cmd -f ../../.env.local react-scripts build",
-		"testreact": "cd server && cd client && react-scripts test",
-		"ejectreact": "cd server && cd client && react-scripts eject"
+		"startreact": "cd client && env-cmd -f ../.env.local react-scripts start",
+		"buildreact": "cd client && env-cmd -f ../.env.local react-scripts build",
+		"testreact": "cd client && react-scripts test",
+		"ejectreact": "cd client && react-scripts eject"
 	},
 	"eslintConfig": {
 		"extends": "react-app"

@@ -1,7 +1,7 @@
 import { Router } from "express"
-import DB from "../db/connect"
 import fetch from "node-fetch"
 import btoa from "btoa"
+import MongoDB from "../db/mongo"
 
 const router = Router()
 const CLIENT_ID = process.env.CLIENT_ID
@@ -9,12 +9,7 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET
 const REDIRECT_URL = `${process.env.REACT_APP_URL}/api/discord/callback`
 const redirect = encodeURIComponent(REDIRECT_URL)
 
-var db = new DB(
-	process.env.MYSQL_HOST,
-	process.env.MYSQL_USER,
-	process.env.MYSQL_PASSWORD,
-	process.env.MYSQL_DB
-)
+const mongoDB = MongoDB()
 
 router.get("/login", (req, res) => {
 	res.redirect(
@@ -38,15 +33,7 @@ router.get("/callback", async (req, res) => {
 		)
 		const json = await response.json()
 		if (json.access_token && json.refresh_token) {
-			db.queryWithCustomErrorHandler(
-				err => {
-					if (!err.message.includes("ER_DUP_ENTRY")) {
-						throw err
-					}
-				},
-				`INSERT INTO DISCORD_API_TOKENS VALUES(?, ?)`,
-				[json.access_token, json.refresh_token]
-			)
+			mongoDB.addDiscordToken(json.access_token, json.refresh_token)
 		}
 		res.cookie("discord_token", json.access_token, {
 			maxAge: 900000,

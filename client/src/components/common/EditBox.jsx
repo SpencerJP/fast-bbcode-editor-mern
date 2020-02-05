@@ -4,7 +4,11 @@ import { useWindowSize } from "../../hooks/useWindowSize"
 import styled from "styled-components"
 import { useCookies } from "react-cookie"
 import { useDispatch, useSelector } from "react-redux"
-import { getMOTD, fetchMOTD } from "../../redux/actions/messageActions"
+import {
+	getMOTD,
+	fetchMOTD,
+	setLoadingStatusEditBox,
+} from "../../redux/actions/messageActions"
 
 const StyledTextArea = styled(Form.TextArea)`
 	font-family: Tahoma, Verdana, Segoe, sans-serif;
@@ -30,15 +34,20 @@ export default function EditBox(props) {
 
 	const handleClick = async e => {
 		e.preventDefault()
+		dispatch(setLoadingStatusEditBox(true))
+		const body = {
+			data: rawBBCode
+		}
 		await fetch("/edit", {
 			method: "POST",
-			body: props.rawBBCode,
+			body: JSON.stringify(body),
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${cookies.discord_token}`,
 			},
 		})
-		dispatch(fetchMOTD())
+		await dispatch(fetchMOTD())
+		dispatch(setLoadingStatusEditBox(false))
 	}
 
 	return (

@@ -10,8 +10,8 @@
 
 # production
 /build
-/server/client/build
-/server/client/node_modules/
+/client/build
+/client/node_modules/
 
 
 # misc
