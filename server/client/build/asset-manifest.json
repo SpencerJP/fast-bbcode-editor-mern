@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "http://www.reduxservers.com/static/css/main.8ebdf6f8.chunk.css",
+    "main.js": "http://www.reduxservers.com/static/js/main.3bf09394.chunk.js",
+    "main.js.map": "http://www.reduxservers.com/static/js/main.3bf09394.chunk.js.map",
+    "runtime-main.js": "http://www.reduxservers.com/static/js/runtime-main.6b31cfb4.js",
+    "runtime-main.js.map": "http://www.reduxservers.com/static/js/runtime-main.6b31cfb4.js.map",
+    "static/js/2.bd019559.chunk.js": "http://www.reduxservers.com/static/js/2.bd019559.chunk.js",
+    "static/js/2.bd019559.chunk.js.map": "http://www.reduxservers.com/static/js/2.bd019559.chunk.js.map",
+    "index.html": "http://www.reduxservers.com/index.html",
+    "precache-manifest.f42d7eeefffe1a8b48e0277c14d44790.js": "http://www.reduxservers.com/precache-manifest.f42d7eeefffe1a8b48e0277c14d44790.js",
+    "service-worker.js": "http://www.reduxservers.com/service-worker.js",
+    "static/css/main.8ebdf6f8.chunk.css.map": "http://www.reduxservers.com/static/css/main.8ebdf6f8.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6b31cfb4.js",
+    "static/js/2.bd019559.chunk.js",
+    "static/css/main.8ebdf6f8.chunk.css",
+    "static/js/main.3bf09394.chunk.js"
+  ]
+}
