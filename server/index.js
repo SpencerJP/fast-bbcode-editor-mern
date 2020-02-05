@@ -11,7 +11,7 @@ var cookieSession = require("cookie-session")
 const mongoDB = MongoDB()
 
 const app = express()
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
 	// CORS
 	res.header("Access-Control-Allow-Origin", process.env.REACT_APP_FRONTEND_URL)
 	res.header(
@@ -57,7 +57,7 @@ app.get("/setup", async (req, res) => {
 	}
 })
 
-app.get("/authedusers", async function (req, res) {
+app.get("/authedusers", async function(req, res) {
 	try {
 		let result = await mongoDB.getAuthedUsers()
 		res.status(200).send(result)
@@ -66,7 +66,7 @@ app.get("/authedusers", async function (req, res) {
 	}
 })
 
-app.post("/edit", jsonBodyParser, async function (req, res, next) {
+app.post("/edit", jsonBodyParser, async function(req, res, next) {
 	try {
 		let discord_token = req.cookies.discord_token
 		let updatedText = req.body.data
@@ -100,6 +100,7 @@ app.get("*", (req, res) => {
 	res.status(200).sendFile("index.html", { root })
 })
 
-app.listen(3005, () => {
-	console.info("Running on port 3005")
+const port = process.env.EXPRESS_PORT
+app.listen(port, () => {
+	console.info("Running on port " + port)
 })

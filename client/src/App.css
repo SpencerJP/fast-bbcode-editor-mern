@@ -20,23 +20,6 @@ body {
 	padding-bottom: 20px;
 }
 
-.simple-print {
-	fill: white;
-	stroke: white;
-}
-.simple-print svg {
-	height: 100%;
-}
-
-.simple-close {
-	color: white;
-	border-color: white;
-}
-
-.simple-ext-info {
-	border-top: 1px solid #aaa;
-}
-
 p {
 	font-size: 16px;
 }

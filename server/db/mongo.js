@@ -2,7 +2,6 @@ import SiteMessageData from "./model/SiteMessageData"
 import MySQLDB from "./mysql"
 import DiscordApiTokens from "./model/DiscordApiTokens"
 import DiscordAuthorizedUserIDs from "./model/DiscordAuthorizedUserIDs"
-const mySQLDB = MySQLDB.constructDefault()
 
 var globalLayer
 
@@ -14,7 +13,7 @@ mongoose.connect(process.env.MONGO_URL, {
 
 var mongoDB = mongoose.connection
 mongoDB.on("error", console.error.bind(console, "connection error:"))
-mongoDB.once("open", function () {
+mongoDB.once("open", function() {
 	console.info("Mongo Connected")
 })
 
@@ -57,15 +56,11 @@ class MongoConnectionLayer {
 	}
 	async addDiscordToken(access_token, refresh_token) {
 		try {
-
 			return await this.discordApiTokens.insert({
 				_id: access_token,
 				refresh_token: refresh_token,
 			})
-		}
-		catch (err) {
-
-		}
+		} catch (err) {}
 	}
 
 	async getSiteMOTD() {

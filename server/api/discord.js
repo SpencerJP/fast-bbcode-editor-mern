@@ -33,7 +33,9 @@ router.get("/callback", async (req, res) => {
 		)
 		const json = await response.json()
 		if (json.access_token && json.refresh_token) {
-			mongoDB.addDiscordToken(json.access_token, json.refresh_token)
+			try {
+				mongoDB.addDiscordToken(json.access_token, json.refresh_token)
+			} catch (err) {}
 		}
 		res.cookie("discord_token", json.access_token, {
 			maxAge: 900000,
