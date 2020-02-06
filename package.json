@@ -61,7 +61,6 @@
 		"@babel/node": "^7.8.3",
 		"@babel/preset-env": "^7.8.4",
 		"@babel/preset-react": "^7.8.3",
-		"babel-jest": "^25.1.0",
 		"env-cmd": "^10.0.1",
 		"eslint": "^6.5.1",
 		"eslint-config-standard": "^14.1.0",

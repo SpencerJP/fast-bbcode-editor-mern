@@ -1,5 +1,4 @@
 import SiteMessageData from "./model/SiteMessageData"
-import MySQLDB from "./mysql"
 import DiscordApiTokens from "./model/DiscordApiTokens"
 import DiscordAuthorizedUserIDs from "./model/DiscordAuthorizedUserIDs"
 
@@ -13,7 +12,7 @@ mongoose.connect(process.env.MONGO_URL, {
 
 var mongoDB = mongoose.connection
 mongoDB.on("error", console.error.bind(console, "connection error:"))
-mongoDB.once("open", function() {
+mongoDB.once("open", function () {
 	console.info("Mongo Connected")
 })
 
@@ -47,6 +46,14 @@ class MongoConnectionLayer {
 	async userIsSiteAdmin(userID) {
 		return (await this.discordAuthorizedUserIDs.find({ _id: userID })) !== null
 	}
+	async addDiscordToken(access_token, refresh_token) {
+		try {
+			return await this.discordApiTokens.insert({
+				_id: access_token,
+				refresh_token: refresh_token,
+			})
+		} catch (err) { }
+	}
 
 	async updateMotd(string) {
 		return await this.siteMessageDataModel.update(
@@ -54,18 +61,29 @@ class MongoConnectionLayer {
 			{ string: string }
 		)
 	}
-	async addDiscordToken(access_token, refresh_token) {
-		try {
-			return await this.discordApiTokens.insert({
-				_id: access_token,
-				refresh_token: refresh_token,
-			})
-		} catch (err) {}
-	}
 
 	async getSiteMOTD() {
 		let motdObj = await this.siteMessageDataModel.findOne({ _id: "motd" })
 		return motdObj.string
+	}
+
+	async updateDemo(string) {
+		return await this.siteMessageDataModel.update(
+			{ _id: "demo" },
+			{ string: string }
+		)
+	}
+
+	async getDemo() {
+		let demoObj = await this.siteMessageDataModel.findOne({ _id: "demo" })
+		if (demoObj === null) {
+			this.siteMessageDataModel.insert({
+				_id: "demo",
+				string: "",
+			})
+			return ""
+		}
+		return demoObj.string
 	}
 }
 
