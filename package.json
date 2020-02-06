@@ -37,7 +37,7 @@
 		"startexpress": "cd server && env-cmd -f ../.env.local nodemon index.js --exec babel-node --",
 		"startreact": "cd client && env-cmd -f ../.env.local react-scripts start",
 		"buildreact": "cd client && env-cmd -f ../.env.local react-scripts build",
-		"test": "cd client && react-scripts test && cd ../ && jest",
+		"test": "jest",
 		"ejectreact": "cd client && react-scripts eject"
 	},
 	"eslintConfig": {
@@ -59,7 +59,9 @@
 		"@babel/cli": "^7.8.3",
 		"@babel/core": "^7.8.3",
 		"@babel/node": "^7.8.3",
-		"@babel/preset-env": "^7.8.3",
+		"@babel/preset-env": "^7.8.4",
+		"@babel/preset-react": "^7.8.3",
+		"babel-jest": "^25.1.0",
 		"env-cmd": "^10.0.1",
 		"eslint": "^6.5.1",
 		"eslint-config-standard": "^14.1.0",
@@ -68,13 +70,24 @@
 		"eslint-plugin-promise": "^4.2.1",
 		"eslint-plugin-standard": "^4.0.1",
 		"fetch-mock": "^9.0.0-beta.2",
-		"jest": "24.9.0",
+		"identity-obj-proxy": "^3.0.0",
+		"jest": "^24.9.0",
 		"nodemon": "^2.0.2",
 		"prettier": "^1.18.2",
-		"redux-mock-store": "^1.5.4"
+		"react-test-renderer": "^16.12.0",
+		"redux-mock-store": "^1.5.4",
+		"regenerator-runtime": "^0.13.3"
 	},
 	"jest": {
-		"testEnvironment": "node",
+		"testEnvironment": "jsdom",
+		"transform": {
+			"^.+\\.jsx$": "babel-jest",
+			"^.+\\.js$": "babel-jest",
+			"\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/fileTransformer.js"
+		},
+		"moduleNameMapper": {
+			"\\.(css|less)$": "identity-obj-proxy"
+		},
 		"coveragePathIgnorePatterns": [
 			"/node_modules/",
 			"/client"

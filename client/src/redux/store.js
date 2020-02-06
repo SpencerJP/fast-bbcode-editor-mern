@@ -15,8 +15,12 @@ const store = createStore(
 	compose(applyMiddleware(...middleware))
 )
 
-export function getRootReducer() {
-	return rootReducer
+export function getNewStore() {
+	return createStore(
+		rootReducer,
+		initialState,
+		compose(applyMiddleware(...middleware))
+	)
 }
 
 export function getTestMiddleware() {

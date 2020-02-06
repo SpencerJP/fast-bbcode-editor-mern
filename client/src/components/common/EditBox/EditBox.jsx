@@ -8,6 +8,7 @@ import {
 	getMOTD,
 	fetchMOTD,
 	setLoadingStatusEditBox,
+	postMOTDData,
 } from "../../../redux/actions/messageActions"
 
 const StyledTextArea = styled(Form.TextArea)`
@@ -34,20 +35,7 @@ export default function EditBox(props) {
 
 	const handleClick = async e => {
 		e.preventDefault()
-		dispatch(setLoadingStatusEditBox(true))
-		const body = {
-			data: rawBBCode
-		}
-		await fetch("/edit", {
-			method: "POST",
-			body: JSON.stringify(body),
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${cookies.discord_token}`,
-			},
-		})
-		await dispatch(fetchMOTD())
-		dispatch(setLoadingStatusEditBox(false))
+		dispatch(postMOTDData(rawBBCode, cookies))
 	}
 
 	return (

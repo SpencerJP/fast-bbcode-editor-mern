@@ -31,3 +31,22 @@ export function setLoadingStatusEditBox(boolean) {
 		payload: boolean,
 	}
 }
+
+export function postMOTDData(rawBBCode, cookies) {
+	return async function(dispatch) {
+		dispatch(setLoadingStatusEditBox(true))
+		const body = {
+			data: rawBBCode,
+		}
+		await fetch("/edit", {
+			method: "POST",
+			body: JSON.stringify(body),
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${cookies.discord_token}`,
+			},
+		})
+		await dispatch(fetchMOTD())
+		dispatch(setLoadingStatusEditBox(false))
+	}
+}
