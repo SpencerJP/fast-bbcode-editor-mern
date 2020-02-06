@@ -50,7 +50,7 @@ export default function MOTDScreen(props) {
 
 	if (
 		user &&
-		(user.id === "290097917388128258" || user.id === "150623388036104192")
+		(user.id === "290097917388128258" || user.id === "150623388036104192") // todo, remove hardcode, however for the moment it is secure anyways
 	) {
 		return (
 			<div className="App">
@@ -64,8 +64,8 @@ export default function MOTDScreen(props) {
 											{props.parser.toReact(rawBBCodeWithNewLines)}
 										</DataScroll>
 									) : (
-										<CustomLoader style={{ height: `${height - 100}px` }} />
-									)}
+											<CustomLoader style={{ height: `${height - 100}px` }} />
+										)}
 								</StyledSegmentInner>
 							</Grid.Column>
 							<Grid.Column width={6}>
@@ -87,8 +87,8 @@ export default function MOTDScreen(props) {
 						{!isLoading ? (
 							props.parser.toReact(rawBBCodeWithNewLines)
 						) : (
-							<CustomLoader style={{ height: "1000px" }} />
-						)}
+								<CustomLoader style={{ height: "1000px" }} />
+							)}
 					</StyledSegmentInner>
 					<DiscordAuth />
 				</ExternalDiv>

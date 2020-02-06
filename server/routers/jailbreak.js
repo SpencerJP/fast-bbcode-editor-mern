@@ -1,5 +1,6 @@
 import { Router } from "express"
 import MongoDB from "../db/mongo"
+import fetch from "node-fetch"
 
 const router = Router()
 var jsonBodyParser = require("body-parser").json()

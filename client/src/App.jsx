@@ -1,6 +1,7 @@
 import React from "react"
 import "./App.css"
 import MOTD from "./container/MOTD/MOTD"
+import Demo from "./container/Demo/Demo"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { Provider } from "react-redux"
 import { CookiesProvider } from "react-cookie"
@@ -19,6 +20,9 @@ function App() {
 						</Route>
 						<Route exact path="/loadingscreen">
 							<LoadingScreen />
+						</Route>
+						<Route exact path="/demo">
+							<Demo parser={parser} />
 						</Route>
 						<Route>
 							<MOTD parser={parser} />

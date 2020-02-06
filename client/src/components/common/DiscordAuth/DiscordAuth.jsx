@@ -67,9 +67,13 @@ export default function DiscordAuth() {
 			<Grid.Column width={3}>
 				<LoginLogoutButton
 					color="blue"
-					onClick={() => {
-						removeCookie("discord_token")
-						dispatch(deleteDiscordUserObject())
+					href={!user && window.REACT_APP_URL + "/api/discord/login/"}
+					onClick={user && function () {
+						if (user) {
+							removeCookie("discord_token")
+							dispatch(deleteDiscordUserObject())
+
+						}
 					}}
 				>
 					<DiscordLogo
