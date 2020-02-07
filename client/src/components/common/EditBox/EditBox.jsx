@@ -1,13 +1,10 @@
 import React from "react"
-import { Segment, Button, Form, Dimmer } from "semantic-ui-react"
+import { Segment, Button, Form } from "semantic-ui-react"
 import { useWindowSize } from "../../../hooks/useWindowSize"
 import styled from "styled-components"
 import { useCookies } from "react-cookie"
 import { useDispatch, useSelector } from "react-redux"
-import {
-	getMOTD,
-	postMOTDData,
-} from "../../../redux/actions/messageActions"
+import { getMOTD, postMOTDData } from "../../../redux/actions/messageActions"
 import CustomLoader from "../CustomLoader/CustomLoader"
 
 const StyledTextArea = styled(Form.TextArea)`
@@ -37,23 +34,26 @@ export default function EditBox(props) {
 		dispatch(postMOTDData(rawBBCode, cookies))
 	}
 
-	const form = (<Form>
-		<StyledTextArea
-			type="text"
-			defaultValue={rawBBCode}
-			onChange={onChange}
-			style={{ height: `${height - 100}px` }}
-		/>
-	</Form>)
+	const form = (
+		<Form>
+			<StyledTextArea
+				type="text"
+				defaultValue={rawBBCode}
+				onChange={onChange}
+				style={{ height: `${height - 100}px` }}
+			/>
+		</Form>
+	)
 
 	return (
 		<Segment>
-			{isLoading ?
-				(<CustomLoader inverted
-					style={{ height: `${height - 100}px` }}>{form}</CustomLoader>)
-				:
+			{isLoading ? (
+				<CustomLoader inverted style={{ height: `${height - 100}px` }}>
+					{form}
+				</CustomLoader>
+			) : (
 				form
-			}
+			)}
 			<Button
 				onClick={handleClick}
 				color="blue"

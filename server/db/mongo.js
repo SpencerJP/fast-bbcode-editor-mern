@@ -12,7 +12,7 @@ mongoose.connect(process.env.MONGO_URL, {
 
 var mongoDB = mongoose.connection
 mongoDB.on("error", console.error.bind(console, "connection error:"))
-mongoDB.once("open", function () {
+mongoDB.once("open", function() {
 	console.info("Mongo Connected")
 })
 
@@ -52,7 +52,7 @@ class MongoConnectionLayer {
 				_id: access_token,
 				refresh_token: refresh_token,
 			})
-		} catch (err) { }
+		} catch (err) {}
 	}
 
 	async updateMotd(string) {
@@ -79,7 +79,7 @@ class MongoConnectionLayer {
 		if (demoObj === null) {
 			this.siteMessageDataModel.insert({
 				_id: "demo",
-				string: "",
+				string: "stuff",
 			})
 			return ""
 		}

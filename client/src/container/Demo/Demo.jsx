@@ -1,10 +1,9 @@
 import React from "react"
 import CustomLoader from "../../components/common/CustomLoader/CustomLoader"
 import { Segment, Grid } from "semantic-ui-react"
-import DiscordAuth from "../../components/common/DiscordAuth/DiscordAuth"
 import styled from "styled-components"
 import { useSelector, useDispatch } from "react-redux"
-import EditBox from "../../components/common/EditBox/EditBox"
+import EditBoxDemo from "../../components/common/EditBox/EditBoxDemo"
 import { useWindowSize } from "../../hooks/useWindowSize"
 import { fetchDemo } from "../../redux/actions/messageActions"
 import { useOnMountFetch } from "../../hooks/useOnMountFetch"
@@ -15,7 +14,6 @@ const StyledSegmentInner = styled(Segment)`
 		background-color: #222;
 		border-radius: 13px;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-		// ${props => props.heightString}
 	}
 `
 
@@ -35,42 +33,40 @@ const ExternalDiv = styled.div`
 `
 
 export default function Demo(props) {
-    const { height } = useWindowSize()
-    const rawBBCode = useSelector(state => state.messageReducer.demo)
-    const isLoading = useSelector(state => state.messageReducer.loadingStatusMotd)
-    const dispatch = useDispatch()
+	const { height } = useWindowSize()
+	const rawBBCode = useSelector(state => state.messageReducer.demo)
+	const isLoading = useSelector(state => state.messageReducer.loadingStatusMotd)
+	const dispatch = useDispatch()
 
-    useOnMountFetch(dispatch, fetchDemo)
+	useOnMountFetch(dispatch, fetchDemo)
 
-    let rawBBCodeWithNewLines = rawBBCode
-    if (rawBBCode) {
-        rawBBCodeWithNewLines = rawBBCodeWithNewLines.replace(/\n/g, "[br][/br]")
-    }
-    return (
-        <div className="App">
-            <ExternalDiv>
-                <Grid>
-                    <Grid.Row>
-                        <Grid.Column width={10}>
-                            <StyledSegmentInner>
-                                {!isLoading ? (
-                                    <DataScroll heightString={`height: ${height - 113}px;`}>
-                                        {props.parser.toReact(rawBBCodeWithNewLines)}
-                                    </DataScroll>
-                                ) : (
-                                        <CustomLoader style={{ height: `${height - 100}px` }} />
-                                    )}
-                            </StyledSegmentInner>
-                        </Grid.Column>
-                        <Grid.Column width={6}>
-                            <EditBox />
-                        </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row>
-                        <DiscordAuth />
-                    </Grid.Row>
-                </Grid>
-            </ExternalDiv>
-        </div>
-    )
+	let rawBBCodeWithNewLines = rawBBCode
+	if (rawBBCode) {
+		rawBBCodeWithNewLines = rawBBCodeWithNewLines.replace(/\n/g, "[br][/br]")
+	}
+
+	return (
+		<div className="App">
+			<ExternalDiv>
+				<Grid>
+					<Grid.Row>
+						<Grid.Column width={9}>
+							<StyledSegmentInner>
+								{!isLoading ? (
+									<DataScroll heightString={`height: ${height - 113}px;`}>
+										{props.parser.toReact(rawBBCodeWithNewLines)}
+									</DataScroll>
+								) : (
+									<CustomLoader style={{ height: `${height - 100}px` }} />
+								)}
+							</StyledSegmentInner>
+						</Grid.Column>
+						<Grid.Column width={7}>
+							<EditBoxDemo />
+						</Grid.Column>
+					</Grid.Row>
+				</Grid>
+			</ExternalDiv>
+		</div>
+	)
 }

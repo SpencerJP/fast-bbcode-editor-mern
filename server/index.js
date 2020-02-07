@@ -12,7 +12,7 @@ const mongoDB = MongoDB()
 var jsonBodyParser = require("body-parser").json()
 
 const app = express()
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
 	// CORS
 	res.header("Access-Control-Allow-Origin", process.env.REACT_APP_FRONTEND_URL)
 	res.header(
@@ -34,7 +34,6 @@ app.use(cookieParser())
 app.use("/api/discord", discordApi)
 app.use("/jailbreak", jailbreak)
 
-
 app.get("/demodata", async (req, res) => {
 	try {
 		let string = await mongoDB.getDemo()
@@ -44,8 +43,7 @@ app.get("/demodata", async (req, res) => {
 	}
 })
 
-
-app.post("/demoedit", jsonBodyParser, async function (req, res, next) {
+app.post("/demoedit", jsonBodyParser, async function(req, res, next) {
 	try {
 		let updatedText = req.body.data
 		await mongoDB.updateDemo(updatedText)
@@ -53,14 +51,21 @@ app.post("/demoedit", jsonBodyParser, async function (req, res, next) {
 		console.log(err.message)
 		res.status(400).send({ error: "Error", errorBody: JSON.stringify(err) })
 	}
-	next()
+	res.status(200).send()
 })
 
 app.use(
 	"/static",
 	express.static(path.join(__dirname, "../client/build/static"))
 )
-app.get("*", function (req, res) {
+app.get("/mapicons/:mapString", function(req, res) {
+	let mapString = req.params.mapString
+	res.sendFile(mapString, {
+		root: path.join(__dirname, "../client/build/mapicons"),
+	})
+})
+
+app.get("*", function(req, res) {
 	res.sendFile("index.html", { root: path.join(__dirname, "../client/build/") })
 })
 

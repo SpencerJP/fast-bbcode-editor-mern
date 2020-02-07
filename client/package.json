@@ -1,6 +1,6 @@
 {
 	"name": "redux-mern-landing",
-	"homepage": "https://redux-servers.herokuapp.com/",
+	"homepage": "https://www.reduxservers.com",
 	"version": "0.1.0",
 	"proxy": "http://localhost:3009",
 	"private": true,

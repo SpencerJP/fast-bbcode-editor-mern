@@ -6,7 +6,7 @@ export function getMOTD(string) {
 }
 
 export function fetchMOTD() {
-	return async function (dispatch) {
+	return async function(dispatch) {
 		dispatch(setLoadingStatusMotd(true))
 		dispatch(setLoadingStatusEditBox(true))
 		let response = await fetch("/jailbreak/rules")
@@ -33,12 +33,13 @@ export function setLoadingStatusEditBox(boolean) {
 }
 
 export function postMOTDData(rawBBCode, cookies) {
-	return async function (dispatch) {
+	return async function(dispatch) {
 		dispatch(setLoadingStatusEditBox(true))
+		dispatch(setLoadingStatusMotd(true))
 		const body = {
 			data: rawBBCode,
 		}
-		await fetch("/jailbreak/edit", {
+		await fetch(`${window.REACT_APP_URL}/jailbreak/edit`, {
 			method: "POST",
 			body: JSON.stringify(body),
 			headers: {
@@ -47,21 +48,28 @@ export function postMOTDData(rawBBCode, cookies) {
 			},
 		})
 		await dispatch(fetchMOTD())
+		dispatch(setLoadingStatusMotd(false))
 		dispatch(setLoadingStatusEditBox(false))
 	}
 }
 
 export function postDemoData(rawBBCode) {
-	return async function (dispatch) {
+	return async function(dispatch) {
 		dispatch(setLoadingStatusEditBox(true))
+		dispatch(setLoadingStatusMotd(true))
 		const body = {
 			data: rawBBCode,
 		}
-		await fetch("/demoedit", {
+		console.log(body)
+		await fetch(`${window.REACT_APP_URL}/demoedit`, {
 			method: "POST",
 			body: JSON.stringify(body),
+			headers: {
+				"Content-Type": "application/json",
+			},
 		})
 		await dispatch(fetchDemo())
+		dispatch(setLoadingStatusMotd(false))
 		dispatch(setLoadingStatusEditBox(false))
 	}
 }
@@ -74,7 +82,7 @@ export function getDemo(string) {
 }
 
 export function fetchDemo() {
-	return async function (dispatch) {
+	return async function(dispatch) {
 		dispatch(setLoadingStatusMotd(true))
 		dispatch(setLoadingStatusEditBox(true))
 		let response = await fetch("/demodata")
