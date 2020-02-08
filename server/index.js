@@ -12,7 +12,7 @@ const mongoDB = MongoDB()
 var jsonBodyParser = require("body-parser").json()
 
 const app = express()
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
 	// CORS
 	res.header("Access-Control-Allow-Origin", process.env.REACT_APP_FRONTEND_URL)
 	res.header(
@@ -43,7 +43,7 @@ app.get("/demodata", async (req, res) => {
 	}
 })
 
-app.post("/demoedit", jsonBodyParser, async function(req, res, next) {
+app.post("/demoedit", jsonBodyParser, async function (req, res, next) {
 	try {
 		let updatedText = req.body.data
 		await mongoDB.updateDemo(updatedText)
@@ -58,14 +58,21 @@ app.use(
 	"/static",
 	express.static(path.join(__dirname, "../client/build/static"))
 )
-app.get("/mapicons/:mapString", function(req, res) {
+app.get("/logos/:logoString", function (req, res) {
+	let logoString = req.params.logoString
+	res.sendFile(logoString, {
+		root: path.join(__dirname, "../client/build/logos"),
+	})
+})
+
+app.get("/mapicons/:mapString", function (req, res) {
 	let mapString = req.params.mapString
 	res.sendFile(mapString, {
 		root: path.join(__dirname, "../client/build/mapicons"),
 	})
 })
 
-app.get("*", function(req, res) {
+app.get("*", function (req, res) {
 	res.sendFile("index.html", { root: path.join(__dirname, "../client/build/") })
 })
 
