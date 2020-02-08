@@ -30,6 +30,19 @@
 	<script>
 		window.REACT_APP_URL =
 			"%REACT_APP_URL%" /* hack to expose environment variable */
+
+
+		// CATCH OLDER BROWSER ERRORS
+		errorfunction = function (err) {
+			console.error(err)
+		}
+
+		var s = document.createElement('script');
+		s.setAttribute('src', "file.js");
+		s.setAttribute('type', "text/javascript");
+		s.setAttribute('charset', "utf-8");
+		s.addEventListener('error', errorfunction, false);
+		document.head.appendChild(s);
 	</script>
 </head>
 
