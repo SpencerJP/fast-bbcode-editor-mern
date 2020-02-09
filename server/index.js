@@ -65,10 +65,17 @@ app.get("/logos/:logoString", function (req, res) {
 	})
 })
 
+
+
 app.get("/mapicons/:mapString", function (req, res) {
 	let mapString = req.params.mapString
 	res.sendFile(mapString, {
 		root: path.join(__dirname, "../client/build/mapicons"),
+	})
+})
+app.get("/awesomiumbackup", function (req, res) { // if the client can't do modern javascript
+	res.sendFile("awesomiumbackup.html", {
+		root: path.join(__dirname, "../client/build/"),
 	})
 })
 
