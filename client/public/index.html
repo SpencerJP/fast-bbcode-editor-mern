@@ -32,7 +32,7 @@
 			"%REACT_APP_URL%"; /* hack to expose environment variable */
 		var ignoreError = false;
 		window.onerror = function (err) {
-			if (!ignoreError) {
+			if (ignoreError !== false) {
 				console.error("splerge_error_catch:" + err.message);
 				if (!(typeof jQuery !== "undefined" && jQuery !== null)) {
 					jQ = document.createElement('script');
