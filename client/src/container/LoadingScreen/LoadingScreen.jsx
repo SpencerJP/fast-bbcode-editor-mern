@@ -47,21 +47,21 @@ const InternalDiv = styled.div`
 `
 
 const StyledTD = styled.td`
-	min-height: 310px;
+	min-height: 410px;
 	min-width: 561px;
-	height: 310px;
+	height: 410px;
 	width: 561px;
 `
 
-const ServerHeader = styled.h1`
-	font-family: "Encode Sans Semi Expanded", sans-serif;
-	font-size: 90px;
-	display: table-cell;
-	vertical-align: middle;
-	color: white;
-	line-height: 90px;
-	text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
-`
+// const ServerHeader = styled.h1`
+// 	font-family: "Encode Sans Semi Expanded", sans-serif;
+// 	font-size: 90px;
+// 	display: table-cell;
+// 	vertical-align: middle;
+// 	color: white;
+// 	line-height: 90px;
+// 	text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+// `
 
 // fakes a margin-top without adding a scroll bar
 const WrapperDiv = styled.div`
@@ -78,7 +78,8 @@ export default function LoadingScreen() {
 						<tr>
 							<StyledTD>
 								<InternalDiv>
-									<ServerHeader>REDUX SERVERS JAILBREAK</ServerHeader>
+									<img src="https://i.imgur.com/dj9zIsQ.png" alt="Redux Logo"></img>
+									{/* <ServerHeader>REDUX SERVERS JAILBREAK</ServerHeader> */}
 								</InternalDiv>
 							</StyledTD>
 						</tr>
@@ -87,21 +88,21 @@ export default function LoadingScreen() {
 						</tr>
 						<tr>
 							<StyledTD>
-								<div class="windows8">
-									<div class="wBall" id="wBall_1">
-										<div class="wInnerBall"></div>
+								<div className="windows8">
+									<div className="wBall" id="wBall_1">
+										<div className="wInnerBall"></div>
 									</div>
-									<div class="wBall" id="wBall_2">
-										<div class="wInnerBall"></div>
+									<div className="wBall" id="wBall_2">
+										<div className="wInnerBall"></div>
 									</div>
-									<div class="wBall" id="wBall_3">
-										<div class="wInnerBall"></div>
+									<div className="wBall" id="wBall_3">
+										<div className="wInnerBall"></div>
 									</div>
-									<div class="wBall" id="wBall_4">
-										<div class="wInnerBall"></div>
+									<div className="wBall" id="wBall_4">
+										<div className="wInnerBall"></div>
 									</div>
-									<div class="wBall" id="wBall_5">
-										<div class="wInnerBall"></div>
+									<div className="wBall" id="wBall_5">
+										<div className="wInnerBall"></div>
 									</div>
 								</div>
 							</StyledTD>
@@ -113,7 +114,7 @@ export default function LoadingScreen() {
 	)
 }
 
-/* code to copy in for media queries 
+/* code to copy in for media queries
 <Media
 				queries={{
 					small: "(max-width: 599px)",
