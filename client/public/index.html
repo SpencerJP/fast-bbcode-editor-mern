@@ -30,47 +30,9 @@
 	<script>
 		window.REACT_APP_URL =
 			"%REACT_APP_URL%"; /* hack to expose environment variable */
-		var async_script_load = function (s, callback) {
-			var script;
-
-			script = document.createElement("script");
-			script.async = "async";
-
-			if (s.scriptCharset) {
-				script.charset = s.scriptCharset;
-			}
-
-			script.src = s.url;
-
-			// Attach handlers for all browsers
-			script.onload = script.onreadystatechange = function () {
-				if (!script.readyState || /loaded|complete/.test(script.readyState)) {
-					// Handle memory leak in IE
-					script.onload = script.onreadystatechange = null;
-
-					// Remove the script
-					if (head && script.parentNode) {
-						head.removeChild(script);
-					}
-
-					// Dereference the script
-					script = undefined;
-					callback(200, "success");
-				}
-			};
-			head.insertBefore(script, head.firstChild);
-		};
 		if (window.navigator.userAgent.indexOf("Awesomium") !== -1) { // user is on awesomium
-			console.log(window.navigator.userAgent)
-			async_script_load({ url: "https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js" }, function () {
-				$.ajax({
-					url: "%REACT_APP_URL%" + "/rules",
-					success: function (data) {
-						$("#root").innerHTML = data;
-					},
-				});
-			})
-		}
+			console.log("RUNLUA:ulx.AlternateMOTD()")
+		};
 	</script>
 </head>
 
