@@ -30,62 +30,23 @@
 	<script>
 		window.REACT_APP_URL =
 			"%REACT_APP_URL%"; /* hack to expose environment variable */
-		// Opera 8.0+
-		var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-
-		// Firefox 1.0+
-		var isFirefox = typeof InstallTrigger !== 'undefined';
-
-		// Safari 3.0+ "[object HTMLElementConstructor]" 
-		var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
-
-		// Internet Explorer 6-11
-		var isIE = /*@cc_on!@*/false || !!document.documentMode;
-
-		// Edge 20+
-		var isEdge = !isIE && !!window.StyleMedia;
-
-		// Chrome 1 - 79
-		var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
-
-		// Edge (based on chromium) detection
-		var isEdgeChromium = isChrome && (navigator.userAgent.indexOf("Edg") != -1);
-
-		// Blink engine detection
-		var isBlink = (isChrome || isOpera) && !!window.CSS;
-
-		console.log("isOpera " + isOpera)
-		console.log("isFirefox " + isSafari)
-		console.log("isSafari " + isSafari)
-		console.log("isIE " + isIE)
-		console.log("isChrome " + isChrome)
-		console.log("isEdgeChromium " + isEdgeChromium)
-		console.log("isBlink " + isBlink)
-
-		/*
-		var ignoreError = false;
-		window.onerror = function (err, url, lineNo, columnNo, error) {
-			if (ignoreError === false) {
-				console.log("splerge_error_catch:" + errmessage);
-				if (!(typeof jQuery !== "undefined" && jQuery !== null)) {
-					jQ = document.createElement('script');
-					jQ.type = 'text/javascript';
-					jQ.onload = jQ.onreadystatechange = init;
-					jQ.src = 'https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js';
-					return document.body.appendChild(jQ);
-				} else {
-					return init();
-				};
-				$.ajax({
-					url: "%REACT_APP_URL%" + "/rules",
-					success: function (data) {
-						$("#root").innerHTML = data;
-					},
-				});
-				ignoreError = true;
-			}
-
-		}; */
+		if (window.navigator.userAgent.indexOf("Awesomium") !== -1) { // user is on awesomium
+			if (!(typeof jQuery !== "undefined" && jQuery !== null)) {
+				jQ = document.createElement('script');
+				jQ.type = 'text/javascript';
+				jQ.onload = jQ.onreadystatechange = init;
+				jQ.src = 'https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js';
+				return document.body.appendChild(jQ);
+			} else {
+				return init();
+			};
+			$.ajax({
+				url: "%REACT_APP_URL%" + "/rules",
+				success: function (data) {
+					$("#root").innerHTML = data;
+				},
+			});
+		}
 	</script>
 </head>
 
