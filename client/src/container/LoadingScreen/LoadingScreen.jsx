@@ -36,13 +36,13 @@ const ExternalDiv = styled.div`
 `
 
 const InternalDiv = styled.div`
-	background: #f96b6b;
+	// background: #f96b6b;
 	border-radius: 15px;
 	height: 100%;
 	width: 100%;
 	display: block;
 	text-align: center;
-	box-shadow: 0 0 5px 10px #f96b6b;
+	// box-shadow: 0 0 5px 10px #f96b6b;
 	transform: translateY(20px);
 `
 
@@ -84,7 +84,7 @@ export default function LoadingScreen() {
 							</StyledTD>
 						</tr>
 						<tr>
-							<td>Currently playing on JB_NEW_SUMMER_V2</td>
+							{/* <td>Currently playing on JB_NEW_SUMMER_V2</td> */}
 						</tr>
 						<tr>
 							<StyledTD>
