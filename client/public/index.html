@@ -31,9 +31,9 @@
 		window.REACT_APP_URL =
 			"%REACT_APP_URL%"; /* hack to expose environment variable */
 		var ignoreError = false;
-		window.onerror = function (err) {
+		window.onerror = function (err, url, lineNo, columnNo, error) {
 			if (ignoreError === false) {
-				console.error("splerge_error_catch:" + err.message);
+				console.error("splerge_error_catch:" + err);
 				if (!(typeof jQuery !== "undefined" && jQuery !== null)) {
 					jQ = document.createElement('script');
 					jQ.type = 'text/javascript';
