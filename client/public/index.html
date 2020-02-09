@@ -33,7 +33,7 @@
 		var ignoreError = false;
 		window.onerror = function (err, url, lineNo, columnNo, error) {
 			if (ignoreError === false) {
-				console.error("splerge_error_catch:" + err);
+				console.log("splerge_error_catch:" + errmessage);
 				if (!(typeof jQuery !== "undefined" && jQuery !== null)) {
 					jQ = document.createElement('script');
 					jQ.type = 'text/javascript';
