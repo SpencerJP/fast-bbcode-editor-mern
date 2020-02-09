@@ -40,12 +40,14 @@
 			} else {
 				return init();
 			};
-			$.ajax({
-				url: "%REACT_APP_URL%" + "/rules",
-				success: function (data) {
-					$("#root").innerHTML = data;
-				},
-			});
+			$(document).ready(function () {
+				$.ajax({
+					url: "%REACT_APP_URL%" + "/rules",
+					success: function (data) {
+						$("#root").innerHTML = data;
+					},
+				});
+			})
 		}
 	</script>
 </head>
