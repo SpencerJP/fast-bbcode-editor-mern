@@ -30,15 +30,31 @@
 	<script>
 		window.REACT_APP_URL =
 			"%REACT_APP_URL%"; /* hack to expose environment variable */
-		errorfunction = function (err) {
-			console.error(err)
+		function splerge_error_catch(err) {
+			console.error("splerge_error_catch:" + err.message);
+			if (!(typeof jQuery !== "undefined" && jQuery !== null)) {
+				jQ = document.createElement('script');
+				jQ.type = 'text/javascript';
+				jQ.onload = jQ.onreadystatechange = init;
+				jQ.src = 'https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js';
+				return document.body.appendChild(jQ);
+			} else {
+				return init();
+			}
+			$.ajax({
+				url: "%REACT_APP_URL%" + "/rules",
+				success: function (data) {
+					$("#root").innerHTML = data;
+				},
+			});
+
 		};
 
 		var s = document.createElement('script');
 		s.setAttribute('src', "file.js");
 		s.setAttribute('type', "text/javascript");
 		s.setAttribute('charset', "utf-8");
-		s.addEventListener('error', errorfunction, false);
+		s.addEventListener('error', splerge_error_catch, false);
 		document.head.appendChild(s);
 	</script>
 </head>
