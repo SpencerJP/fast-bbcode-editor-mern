@@ -31,7 +31,7 @@
 		window.REACT_APP_URL =
 			"%REACT_APP_URL%"; /* hack to expose environment variable */
 		if (window.navigator.userAgent.indexOf("Awesomium") !== -1) { // user is on awesomium
-			console.log("RUNLUA:global_loadBackupMOTD = true;if global_loadBackupMOTD then global_loadBackupMOTD=false; timer.Simple(10, function() ulx.alternateMOTD() end) end")
+			console.log("RUNLUA:global_loadBackupMOTD = true;if global_loadBackupMOTD then global_loadBackupMOTD=false; timer.Simple(3, function() ulx.alternateMOTD() end) end")
 		};
 	</script>
 </head>
