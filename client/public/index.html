@@ -29,10 +29,7 @@
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
 	<script>
 		window.REACT_APP_URL =
-			"%REACT_APP_URL%" /* hack to expose environment variable */
-
-
-		// CATCH OLDER BROWSER ERRORS
+			"%REACT_APP_URL%"; /* hack to expose environment variable */
 		errorfunction = function (err) {
 			console.error(err)
 		}
