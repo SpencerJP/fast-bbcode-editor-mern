@@ -4,7 +4,9 @@ import { useWindowSize } from "../../hooks/useWindowSize"
 import styled from "styled-components"
 import "./LoadingScreen.css"
 import LoadingAnim from "./LoadingAnim"
-import { Grid } from "semantic-ui-react"
+import { Grid, Header } from "semantic-ui-react"
+import { useQueryParam, StringParam } from "use-query-params"
+import SteamSignature from "./SteamSignature"
 
 const EXTERNAL_MARGIN = 50
 
@@ -42,27 +44,68 @@ const WrapperDiv = styled.div`
 	padding-top: ${EXTERNAL_MARGIN / 2}px;
 `
 
+const CenterContents = props => {
+	let secondMap = []
+	return (
+		<table width="100%" height="100%" valign="center">
+			{props.children &&
+				props.children.map(child => {
+					if (child.giveOwnRow) {
+						return (
+							<tr style={{ border: "none" }}>
+								<td style={{ textAlign: "left" }}>{child}</td>
+							</tr>
+						)
+					} else {
+						secondMap.push(child)
+						return null
+					}
+				})}
+			<tr>
+				<td style={{ textAlign: "left" }}>{secondMap}</td>
+			</tr>
+		</table>
+	)
+}
+
 const GridRow = styled(Grid.Row)`
 	@@@ {
 		// TODO
 	}
 `
-
-export default function LoadingScreen() {
+const SubHeaders = props => {
+	return <h4 className="loading-screen-sub-headers">{props.children}</h4>
+}
+export default function LoadingScreen(props) {
 	const windowSize = useWindowSize()
+	const [steamid] = useQueryParam("steamid", StringParam)
+	const [map] = useQueryParam("map", StringParam)
+	console.log(steamid)
+	console.log(map)
 	return (
 		<WrapperDiv>
 			<ExternalDiv height={windowSize.height} width={windowSize.width}>
 				<Grid columns="three" style={{ height: "90%", width: "90%" }}>
 					<GridRow>
-						<Grid.Column />
+						<Grid.Column></Grid.Column>
 						<Grid.Column>
 							<img src="https://i.imgur.com/dj9zIsQ.png" alt="Redux Logo"></img>
 						</Grid.Column>
 						<Grid.Column />
 					</GridRow>
 					<GridRow>
-						<Grid.Column />
+						<Grid.Column>
+							<CenterContents>
+								<Header className="loading-screen-welcome">
+									Welcome Back!{" "}
+								</Header>
+								{steamid && <SteamSignature steamid={steamid} />}
+								<SubHeaders>Time Played: </SubHeaders>
+								<SubHeaders>Kills: </SubHeaders>
+								<SubHeaders>Last Seen: </SubHeaders>
+								<SubHeaders>Rounds Won:</SubHeaders>
+							</CenterContents>
+						</Grid.Column>
 						<Grid.Column>
 							<LoadingAnim />
 						</Grid.Column>

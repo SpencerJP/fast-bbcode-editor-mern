@@ -33,7 +33,8 @@
 		"redux-promise-middleware": "^6.1.1",
 		"redux-thunk": "^2.3.0",
 		"semantic-ui-react": "^0.88.2",
-		"styled-components": "^5.0.0"
+		"styled-components": "^5.0.0",
+		"use-query-params": "^0.6.0"
 	},
 	"scripts": {
 		"startserver": "npm install && cd client && env-cmd -f ../.env.local react-scripts build && cd ../server && env-cmd -f ../.env.local nodemon index.js --exec babel-node -- > stdout.txt 2> stderr.txt &",
