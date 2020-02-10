@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<!-- <link rel="icon" href="%PUBLIC_URL%/favicon.png" /> -->
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#000000" />
+		<meta name="description" content="MOTD for Redux Servers Jailbreak" />
 
-<head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="MOTD for Redux Servers Jailbreak" />
-
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Expanded|Roboto&display=swap"
-        rel="stylesheet" />
-    <!--
+		<!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Expanded|Roboto&display=swap"
+			rel="stylesheet"
+		/>
+		<!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+		<!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+		<!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -25,192 +26,198 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Redux Servers</title>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
-    <style>
-        * {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-        }
+		<title>Redux Servers</title>
+		<link
+			rel="stylesheet"
+			href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+		/>
+		<style>
+			* {
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+			}
 
-        body {
-            font-family: "Roboto", "Open Sans", sans-serif;
-            line-height: 1.75em;
-            font-size: 16px;
-            background-color: #222222;
-            color: #aaaaaa;
-        }
+			body {
+				font-family: "Open Sans", sans-serif;
+				line-height: 1.75em;
+				font-size: 16px;
+				background-color: #222222;
+				color: #aaaaaa;
+			}
 
-        .simple-container {
-            max-width: 675px;
-            margin: 0 auto;
-            padding-top: 70px;
-            padding-bottom: 20px;
-        }
+			.ui.segment {
+				background-color: #222222;
+			}
 
-        p {
-            font-size: 16px;
-        }
+			.simple-container {
+				max-width: 675px;
+				margin: 0 auto;
+				padding-top: 70px;
+				padding-bottom: 20px;
+			}
 
-        h1 {
-            font-size: 30px;
-            line-height: 34px;
-        }
+			.simple-print {
+				fill: white;
+				stroke: white;
+			}
+			.simple-print svg {
+				height: 100%;
+			}
 
-        h2 {
-            font-size: 20px;
-            line-height: 25px;
-        }
+			.simple-close {
+				color: white;
+				border-color: white;
+			}
 
-        h3 {
-            font-size: 16px;
-            line-height: 27px;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #d8d8d8;
-            border-top: 1px solid #d8d8d8;
-        }
+			.simple-ext-info {
+				border-top: 1px solid #aaa;
+			}
 
-        hr {
-            height: 1px;
-            background-color: #d8d8d8;
-            border: none;
-            width: 100%;
-            margin: 0px;
-        }
+			p {
+				font-size: 16px;
+			}
 
-        a[href] {
-            color: #1e8ad6;
-        }
+			h1 {
+				font-size: 30px;
+				line-height: 34px;
+			}
 
-        a[href]:hover {
-            color: #3ba0e6;
-        }
+			h2 {
+				font-size: 20px;
+				line-height: 25px;
+			}
 
-        img {
-            max-width: 100%;
-        }
+			h3 {
+				font-size: 16px;
+				line-height: 27px;
+				padding-top: 15px;
+				padding-bottom: 15px;
+				border-bottom: 1px solid #d8d8d8;
+				border-top: 1px solid #d8d8d8;
+			}
 
-        li {
-            line-height: 1.5em;
-        }
+			hr {
+				height: 1px;
+				border: none;
+				width: 100%;
+				margin: 0px;
+			}
 
-        aside,
-        [class*="sidebar"],
-        [id*="sidebar"] {
-            max-width: 90%;
-            margin: 0 auto;
-            border: 1px solid lightgrey;
-            padding: 5px 15px;
-        }
+			a[href] {
+				color: #1e8ad6;
+			}
 
-        @media (min-width: 1921px) {
-            body {
-                font-size: 18px;
-            }
-        }
-    </style>
-</head>
+			a[href]:hover {
+				color: #3ba0e6;
+			}
 
-<body>
-    <div id="root">
-        <div class="App">
-            <div class="sc-AykKJ iuENCt">
-                <div class="ui segment sc-AykKH fMQdlw"><br>
-                    <center><span style="font-size: 55px;"><span style="color: rgb(255, 128, 0);"><strong>Redux
-                                    Servers</strong></span></span></center>
-                    <center><span style="font-size: 55px;"><span style="color: rgb(255, 128, 0);"><strong>Please change
-                                    to Chromium branch if you see a white background.</strong></span></span></center>
-                    <br><br>
-                    <center><a href="steam://connect/192.168.20.16:27015" target="_blank"
-                            rel="noopener noreferrer"><span style="font-size: 25px;"><span
-                                    style="color: rgb(161, 38, 237);"><strong>Quick Join
-                                        Server!</strong></span></span></a></center><br>
-                    <center><span style="font-size: 25px;"><span style="color: rgb(255, 0, 0);"><u><em><strong>Please
-                                            ensure you read and understand the rules as you are accountable if you break
-                                            them.</strong></em></u></span></span></center><br><br>
-                    <center><strong><span style="color: rgb(128, 255, 255);">Last modification:
-                                04/02/2020</span></strong></center><br>
-                    <center><span style="font-size: 30px;"><span style="color: rgb(255, 128, 0);"><strong>[General
-                                    Rules]</strong></span></span></center><br> - Do not mic spam or flood the chat box.
-                    <br> - Do not evade a punishment by leaving &amp; rejoining the server <br>- When a staff member
-                    asks you to stop doing something you stop, no questions asked <br>- Do not release the personal
-                    information of players without their consent. <br> - Do not bully or harass people. If someone is
-                    abusing you either mute them or tell an admin <br>- No sprays with shock material
-                    (gore/torture/etc), non human/adult nudity, or with sexual acts<br>- Do not use hacks, scripts, bugs
-                    or any other exploits, such as map exploits, to give yourself an unfair advantage. This will result
-                    in a permanent ban! <br><br><br>
-                    <center><span style="color: rgb(64, 255, 64);"><span style="font-size: 30px;"><strong>[Jailbreak
-                                    Rules]</strong></span></span></center><br><span
-                        style="color: rgb(191, 255, 255);">1.</span> Use your common sense and stop if you feel like
-                    you're doing something wrong. <br><span style="color: rgb(191, 255, 255);">2.</span>
-                    Freekilling/RDM/Teamkilling is not accepted. <br><span style="color: rgb(191, 255, 255);">3.</span>
-                    Do not give intentional "freedays" under any circumstance (except for "first day freeday" after a
-                    map change/extension). <br><span style="color: rgb(191, 255, 255);">4.</span> Do not intentionally
-                    stall/delay the rounds (this includes Cell Days). Don't hide and wait for prolonged amounts of time
-                    (Camping). Players deemed to be doing so will be teleported to another area. <br> <span
-                        style="color: rgb(191, 255, 255);">5.</span> Warden must communicate appropriately, whether it
-                    be by voice chat or through way points (C by default - Note: waypoints do not count as specific
-                    orders; you must also indicate by voice the action you wish the prisoners to complete). If you don't
-                    communicate, don't become the Warden. It is also not advised to become a warden if your microphone
-                    is of poor quality or if you are hard to understand - all it does is make it a pain for the people
-                    trying to listen to you and carry out your orders. <br><span
-                        style="color: rgb(191, 255, 255);">6.</span> Guards must obey and protect the warden at
-                    all-times; do what he says when he says it. <br><span style="color: rgb(191, 255, 255);">7.</span>
-                    Prisoners and Guards may refuse an order that will lead to certain death (if you are ordered to jump
-                    off a building or do anything that will endanger your life you are allowed to refuse the order).
-                    <br><span style="color: rgb(191, 255, 255);">8.</span> Guards are not allowed to gunplant. Do not
-                    bring and distribute weapons to prisoners under any circumstance. Failure to follow this rule will
-                    result in a lengthy ban. <br><span style="color: rgb(191, 255, 255);">9.</span> Do not
-                    Ghost/Metagame. If you are dead, do not give the prisoners who are still alive any information that
-                    could affect the day. <br><span style="color: rgb(191, 255, 255);">10.</span> Guards cannot
-                    interfere with a prisoner's Last Request. If they are having a battle do not shoot the prisoner.
-                    However, if the prisoner is specifically targeting guards other than their chosen LR opponent, this
-                    counts as rebelling and the prisoner can be kos. <br><span
-                        style="color: rgb(191, 255, 255);">11.</span> Kill prisoners within reason; if they have a knife
-                    do not just gun them down, you must ask them to drop it first. If they have a gun, even if it is
-                    holstered, you may kill them (LR is excepted). <br><span
-                        style="color: rgb(191, 255, 255);">12.</span> You are not allowed to camp the armory. After you
-                    have chosen your weaponry you should leave it. <br><span
-                        style="color: rgb(191, 255, 255);">13.</span> Do not close cells once they have been opened
-                    unless prisoners are to enter them later in the day. <br><span
-                        style="color: rgb(191, 255, 255);">14.</span> If the Warden has not given an order before 60
-                    seconds after the start of a round then it is a free day. <br><span
-                        style="color: rgb(191, 255, 255);">15.</span> You cannot prevent users from doing Last Request,
-                    and neither player can use the medic bay or health kits during Last Request. <br><span
-                        style="color: rgb(191, 255, 255);">16.</span> All Guards must communicate clearly with working
-                    microphones (an exception to this is when there are not enough players who wish to fill open guard
-                    spots). All guards must have the intention of becoming the Warden. Refer to rule no. 5. <br> <span
-                        style="color: rgb(191, 255, 255);">17.</span> When a KOS order has been made any new,
-                    conflicting orders will override it (unless playing Simon Says. This also excludes games such as
-                    Lava day, War day, or any other day, use your common sense and realize when you are using cheap
-                    tricks to kill off players, refer to rule no 1. (For example, Warden: Leaving Circle is KOS, (1
-                    minute later) Warden: All prisoners to the square. once they leave the circle to go to the square
-                    you cannot KOS them for leaving). <br><span style="color: rgb(191, 255, 255);">18.</span> If you're
-                    the last guard alive you may KOS anyone that is holding a weapon. You may also try to take position
-                    of warden by giving new orders to the prisoners - if they do not comply they are rebelling (KOS).
-                    <br><span style="color: rgb(191, 255, 255);">19.</span> No baiting prisoners as a guard, meaning you
-                    can't move into their fist range on purpose or jump on their heads. Avoid moving near them because
-                    if they do punch you, they are fine to do so as you moved within their radius rather than them
-                    charging at you. If prisoners are ordered to be AFK frozen they may not punch but the admins will
-                    punish those who baited them. <br><span style="color: rgb(191, 255, 255);">20.</span> We aren't here
-                    to simply win rounds but to allow both teams to have fun, don't make killing everyone your main goal
-                    but make your goal giving everyone a chance to contribute and survive. This rule applies to both the
-                    guard team and the prisoner team. Furthermore, days which can be considered cruel to prisoners (eg.
-                    faze clan recruitment) are prohibited. <br><span style="color: rgb(191, 255, 255);">21.</span> No
-                    prop surfing or killing. <br><span style="color: rgb(191, 255, 255);">22.</span> Do not repeat
-                    days/games (E.G: Three war days in a row) <br><span style="color: rgb(191, 255, 255);">23.</span> No
-                    cell days; prisoners must be out of their cells by 1 and a half minutes (1.30) after the beginning
-                    of the round. <br><span style="color: rgb(191, 255, 255);">24.</span> Games/days that require the
-                    use of the developer console are prohibited. <br><span style="color: rgb(191, 255, 255);">25.</span>
-                    As a guard, do not open the cell doors without your warden's permission. <br><span
-                        style="color: rgb(191, 255, 255);">26.</span> First-Day-Special-Days which involve prisoners
-                    spawning with a weapon are to be played like a war day. Any other First-Day-Special-Days will
-                    continue to be considered First Day Freeday. <br><br> <em>Rules are subject to change...</em>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+			img {
+				max-width: 100%;
+			}
 
+			li {
+				line-height: 1.5em;
+			}
+
+			aside,
+			[class*="sidebar"],
+			[id*="sidebar"] {
+				max-width: 90%;
+				margin: 0 auto;
+				border: 1px solid lightgrey;
+				padding: 5px 15px;
+			}
+
+			@media (min-width: 1921px) {
+				body {
+					font-size: 18px;
+				}
+			}
+			* {
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: "Roboto", "Open Sans", sans-serif;
+				line-height: 1.75em;
+				font-size: 16px;
+				background-color: #222222;
+				color: #aaaaaa;
+			}
+
+			.simple-container {
+				max-width: 675px;
+				margin: 0 auto;
+				padding-top: 70px;
+				padding-bottom: 20px;
+			}
+
+			p {
+				font-size: 16px;
+			}
+
+			h1 {
+				font-size: 30px;
+				line-height: 34px;
+			}
+
+			h2 {
+				font-size: 20px;
+				line-height: 25px;
+			}
+
+			h3 {
+				font-size: 16px;
+				line-height: 27px;
+				padding-top: 15px;
+				padding-bottom: 15px;
+				border-bottom: 1px solid #d8d8d8;
+				border-top: 1px solid #d8d8d8;
+			}
+
+			hr {
+				height: 1px;
+				border: none;
+				width: 100%;
+				margin: 0px;
+			}
+
+			a[href] {
+				color: #1e8ad6;
+			}
+
+			a[href]:hover {
+				color: #3ba0e6;
+			}
+
+			img {
+				max-width: 100%;
+			}
+
+			li {
+				line-height: 1.5em;
+			}
+
+			aside,
+			[class*="sidebar"],
+			[id*="sidebar"] {
+				max-width: 90%;
+				margin: 0 auto;
+				border: 1px solid lightgrey;
+				padding: 5px 15px;
+			}
+
+			@media (min-width: 1921px) {
+				body {
+					font-size: 18px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="root"><div class="App"><div class="sc-AykKJ iuENCt"><div class="ui segment sc-AykKH fMQdlw"><center><img role="presentation" src="https://i.imgur.com/dj9zIsQ.png" height="225"></center><br><center><a href="steam://connect/192.168.20.16:27015" target="_blank" rel="noopener noreferrer"><span style="font-size: 25px;"><span style="color: rgb(161, 38, 237);"><strong>Quick Join Server!</strong></span></span></a></center><br><center><span style="font-size: 25px;"><span style="color: rgb(255, 0, 0);"><u><em><strong>Please ensure you read and understand the rules as you are accountable if you break them.</strong></em></u></span></span></center><br><br><center><strong><span style="color: rgb(128, 255, 255);">Last modification: 04/02/2020</span></strong></center><br><center><span style="font-size: 30px;"><span style="color: rgb(255, 128, 0);"><strong>[General Rules]</strong></span></span></center><br> - Do not mic spam or flood the chat box. <br> - Do not evade a punishment by leaving &amp; rejoining the server <br>- When a staff member asks you to stop doing something you stop, no questions asked <br>- Do not release the personal information of players without their consent. <br> - Do not bully or harass people. If someone is abusing you either mute them or tell an admin <br>- No sprays with shock material (gore/torture/etc), non human/adult nudity, or with sexual acts<br>- Do not use hacks, scripts, bugs or any other exploits, such as map exploits, to give yourself an unfair advantage. This will result in a permanent ban! <br><br><br><center><span style="color: rgb(64, 255, 64);"><span style="font-size: 30px;"><strong>[Jailbreak Rules]</strong></span></span></center><br><span style="color: rgb(191, 255, 255);">1.</span> Use your common sense and stop if you feel like you're doing something wrong. <br><span style="color: rgb(191, 255, 255);">2.</span> Freekilling/RDM/Teamkilling is not accepted. <br><span style="color: rgb(191, 255, 255);">3.</span> Do not give intentional "freedays" under any circumstance (except for "first day freeday" after a map change/extension). <br><span style="color: rgb(191, 255, 255);">4.</span> Do not intentionally stall/delay the rounds (this includes Cell Days). Don't hide and wait for prolonged amounts of time (Camping). Players deemed to be doing so will be teleported to another area. <br> <span style="color: rgb(191, 255, 255);">5.</span> Warden must communicate appropriately, whether it be by voice chat or through way points (C by default - Note: waypoints do not count as specific orders; you must also indicate by voice the action you wish the prisoners to complete). If you don't communicate, don't become the Warden. It is also not advised to become a warden if your microphone is of poor quality or if you are hard to understand - all it does is make it a pain for the people trying to listen to you and carry out your orders. <br><span style="color: rgb(191, 255, 255);">6.</span> Guards must obey and protect the warden at all-times; do what he says when he says it. <br><span style="color: rgb(191, 255, 255);">7.</span> Prisoners and Guards may refuse an order that will lead to certain death (if you are ordered to jump off a building or do anything that will endanger your life you are allowed to refuse the order). <br><span style="color: rgb(191, 255, 255);">8.</span> Guards are not allowed to gunplant. Do not bring and distribute weapons to prisoners under any circumstance. Failure to follow this rule will result in a lengthy ban. <br><span style="color: rgb(191, 255, 255);">9.</span> Do not Ghost/Metagame. If you are dead, do not give the prisoners who are still alive any information that could affect the day. <br><span style="color: rgb(191, 255, 255);">10.</span> Guards cannot interfere with a prisoner's Last Request. If they are having a battle do not shoot the prisoner. However, if the prisoner is specifically targeting guards other than their chosen LR opponent, this counts as rebelling and the prisoner can be kos. <br><span style="color: rgb(191, 255, 255);">11.</span> Kill prisoners within reason; if they have a knife do not just gun them down, you must ask them to drop it first. If they have a gun, even if it is holstered, you may kill them (LR is excepted). <br><span style="color: rgb(191, 255, 255);">12.</span> You are not allowed to camp the armory. After you have chosen your weaponry you should leave it. <br><span style="color: rgb(191, 255, 255);">13.</span> Do not close cells once they have been opened unless prisoners are to enter them later in the day. <br><span style="color: rgb(191, 255, 255);">14.</span> If the Warden has not given an order before 60 seconds after the start of a round then it is a free day. <br><span style="color: rgb(191, 255, 255);">15.</span> You cannot prevent users from doing Last Request, and neither player can use the medic bay or health kits during Last Request. <br><span style="color: rgb(191, 255, 255);">16.</span> All Guards must communicate clearly with working microphones (an exception to this is when there are not enough players who wish to fill open guard spots). All guards must have the intention of becoming the Warden. Refer to rule no. 5. <br> <span style="color: rgb(191, 255, 255);">17.</span> When a KOS order has been made any new, conflicting orders will override it (unless playing Simon Says. This also excludes games such as Lava day, War day, or any other day, use your common sense and realize when you are using cheap tricks to kill off players, refer to rule no 1. (For example, Warden: Leaving Circle is KOS, (1 minute later) Warden: All prisoners to the square. once they leave the circle to go to the square you cannot KOS them for leaving). <br><span style="color: rgb(191, 255, 255);">18.</span> If you're the last guard alive you may KOS anyone that is holding a weapon. You may also try to take position of warden by giving new orders to the prisoners - if they do not comply they are rebelling (KOS). <br><span style="color: rgb(191, 255, 255);">19.</span> No baiting prisoners as a guard, meaning you can't move into their fist range on purpose or jump on their heads. Avoid moving near them because if they do punch you, they are fine to do so as you moved within their radius rather than them charging at you. If prisoners are ordered to be AFK frozen they may not punch but the admins will punish those who baited them. <br><span style="color: rgb(191, 255, 255);">20.</span> We aren't here to simply win rounds but to allow both teams to have fun, don't make killing everyone your main goal but make your goal giving everyone a chance to contribute and survive. This rule applies to both the guard team and the prisoner team. Furthermore, days which can be considered cruel to prisoners (eg. faze clan recruitment) are prohibited. <br><span style="color: rgb(191, 255, 255);">21.</span> No prop surfing or killing. <br><span style="color: rgb(191, 255, 255);">22.</span> Do not repeat days/games (E.G: Three war days in a row) <br><span style="color: rgb(191, 255, 255);">23.</span> No cell days; prisoners must be out of their cells by 1 and a half minutes (1.30) after the beginning of the round. <br><span style="color: rgb(191, 255, 255);">24.</span> Games/days that require the use of the developer console are prohibited. <br><span style="color: rgb(191, 255, 255);">25.</span> As a guard, do not open the cell doors without your warden's permission. <br><span style="color: rgb(191, 255, 255);">26.</span> First-Day-Special-Days which involve prisoners spawning with a weapon are to be played like a war day. Any other First-Day-Special-Days will continue to be considered First Day Freeday. <br><br> <em>Rules are subject to change...</em> </div></div>
+		</div>
+	</body>
 </html>

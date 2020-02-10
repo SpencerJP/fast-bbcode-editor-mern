@@ -1,6 +1,9 @@
 import SiteMessageData from "./model/SiteMessageData"
 import DiscordApiTokens from "./model/DiscordApiTokens"
 import DiscordAuthorizedUserIDs from "./model/DiscordAuthorizedUserIDs"
+import Player from "./model/Player"
+import JBMap from "./model/JBMap"
+import PlayerSession from "./model/PlayerSession"
 
 var globalLayer
 
@@ -21,6 +24,23 @@ class MongoConnectionLayer {
 		this.mongoose = mongoose
 	}
 	async setupTables() {
+		this.playersModel = new Player(this.mongoose, {
+			_id: String, // steamid
+			name: String,
+			firstSeen: Date,
+			lastSeen: Date,
+		})
+		this.playerSessionsModel = new PlayerSession(this.mongoose, {
+			player_id: String, // steamid
+			timeJoined: Date,
+			timeLeft: Date,
+		})
+		this.mapsModel = new JBMap(this.mongoose, {
+			_id: String, // map filename
+			prisonerWins: Number,
+			guardWins: Number,
+			timesPlayed: Number,
+		})
 		this.siteMessageDataModel = new SiteMessageData(this.mongoose, {
 			_id: String,
 			string: String,
@@ -35,7 +55,7 @@ class MongoConnectionLayer {
 				_id: String,
 			}
 		)
-		return this.getSiteMOTD()
+		return this.siteMessageDataModel.getSiteMOTD()
 	}
 
 	async getAuthedUsers() {
@@ -53,37 +73,6 @@ class MongoConnectionLayer {
 				refresh_token: refresh_token,
 			})
 		} catch (err) {}
-	}
-
-	async updateMotd(string) {
-		return await this.siteMessageDataModel.update(
-			{ _id: "motd" },
-			{ string: string }
-		)
-	}
-
-	async getSiteMOTD() {
-		let motdObj = await this.siteMessageDataModel.findOne({ _id: "motd" })
-		return motdObj.string
-	}
-
-	async updateDemo(string) {
-		return await this.siteMessageDataModel.update(
-			{ _id: "demo" },
-			{ string: string }
-		)
-	}
-
-	async getDemo() {
-		let demoObj = await this.siteMessageDataModel.findOne({ _id: "demo" })
-		if (demoObj === null) {
-			this.siteMessageDataModel.insert({
-				_id: "demo",
-				string: "stuff",
-			})
-			return ""
-		}
-		return demoObj.string
 	}
 }
 

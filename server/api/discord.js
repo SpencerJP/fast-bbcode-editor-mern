@@ -45,7 +45,7 @@ router.get("/callback", async (req, res) => {
 			// workaround to allow for dev work
 			res.redirect(`${process.env.REACT_APP_FRONTEND_URL}`)
 		} else {
-			res.redirect("/index")
+			res.redirect("/")
 		}
 	} catch (err) {
 		console.log(err)
