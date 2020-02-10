@@ -35,34 +35,6 @@ const ExternalDiv = styled.div`
 	text-align: center;
 `
 
-const InternalDiv = styled.div`
-	// background: #f96b6b;
-	border-radius: 15px;
-	height: 100%;
-	width: 100%;
-	display: block;
-	text-align: center;
-	// box-shadow: 0 0 5px 10px #f96b6b;
-	transform: translateY(20px);
-`
-
-const StyledTD = styled.td`
-	min-height: 410px;
-	min-width: 561px;
-	height: 410px;
-	width: 561px;
-`
-
-// const ServerHeader = styled.h1`
-// 	font-family: "Encode Sans Semi Expanded", sans-serif;
-// 	font-size: 90px;
-// 	display: table-cell;
-// 	vertical-align: middle;
-// 	color: white;
-// 	line-height: 90px;
-// 	text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
-// `
-
 // fakes a margin-top without adding a scroll bar
 const WrapperDiv = styled.div`
 	padding-top: ${EXTERNAL_MARGIN / 2}px;
@@ -73,21 +45,20 @@ export default function LoadingScreen() {
 	return (
 		<WrapperDiv>
 			<ExternalDiv height={windowSize.height} width={windowSize.width}>
-				<table>
+				<table style={{ height: "90%" }}>
 					<tbody>
 						<tr>
-							<StyledTD>
-								<InternalDiv>
-									<img src="https://i.imgur.com/dj9zIsQ.png" alt="Redux Logo"></img>
-									{/* <ServerHeader>REDUX SERVERS JAILBREAK</ServerHeader> */}
-								</InternalDiv>
-							</StyledTD>
+							<td className="styled-td">
+								<div className="logo-container">
+									<img
+										src="https://i.imgur.com/dj9zIsQ.png"
+										alt="Redux Logo"
+									></img>
+								</div>
+							</td>
 						</tr>
 						<tr>
-							{/* <td>Currently playing on JB_NEW_SUMMER_V2</td> */}
-						</tr>
-						<tr>
-							<StyledTD>
+							<td>
 								<div className="windows8">
 									<div className="wBall" id="wBall_1">
 										<div className="wInnerBall"></div>
@@ -105,7 +76,7 @@ export default function LoadingScreen() {
 										<div className="wInnerBall"></div>
 									</div>
 								</div>
-							</StyledTD>
+							</td>
 						</tr>
 					</tbody>
 				</table>

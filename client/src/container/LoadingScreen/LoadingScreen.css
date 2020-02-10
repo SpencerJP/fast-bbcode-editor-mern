@@ -1,3 +1,26 @@
+.logo-container {
+	height: 100%;
+	width: 100%;
+	display: block;
+	text-align: center;
+	/* transform: translateY(-40px); */
+	border-radius: 15px;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	.logo-image-resize {
+		height: 559px;
+		width: 420px;
+	}
+}
+
+.styled-td {
+	min-height: 410px;
+	min-width: 561px;
+	height: 410px;
+	width: 561px;
+}
+
 .windows8 {
 	position: relative;
 	width: 78px;

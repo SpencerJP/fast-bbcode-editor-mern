@@ -7,13 +7,21 @@ import rootReducer from "./reducers"
 const initialState = {}
 
 const middleware = [thunk, logger, promise]
-const testMiddleware = [thunk, promise]
-
-const store = createStore(
-	rootReducer,
-	initialState,
-	compose(applyMiddleware(...middleware))
-)
+const middlewareNoLogger = [thunk, promise]
+let store
+if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+	store = createStore(
+		rootReducer,
+		initialState,
+		compose(applyMiddleware(...middleware))
+	)
+} else {
+	store = createStore(
+		rootReducer,
+		initialState,
+		compose(applyMiddleware(...middlewareNoLogger))
+	)
+}
 
 export function getNewStore() {
 	return createStore(
@@ -24,7 +32,7 @@ export function getNewStore() {
 }
 
 export function getTestMiddleware() {
-	return testMiddleware
+	return middlewareNoLogger
 }
 
 export default store
