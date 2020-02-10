@@ -95,16 +95,19 @@ export default function LoadingScreen(props) {
 					</GridRow>
 					<GridRow>
 						<Grid.Column>
-							<CenterContents>
-								<Header className="loading-screen-welcome">
-									Welcome Back!{" "}
-								</Header>
-								{steamid && <SteamSignature steamid={steamid} />}
-								<SubHeaders>Time Played: </SubHeaders>
-								<SubHeaders>Kills: </SubHeaders>
-								<SubHeaders>Last Seen: </SubHeaders>
-								<SubHeaders>Rounds Won:</SubHeaders>
-							</CenterContents>
+							{!process.env.NODE_ENV ||
+								(process.env.NODE_ENV === "development" && (
+									<CenterContents>
+										<Header className="loading-screen-welcome">
+											Welcome Back!{" "}
+										</Header>
+										{steamid && <SteamSignature steamid={steamid} />}
+										<SubHeaders>Time Played: 56 Hours</SubHeaders>
+										<SubHeaders>K: 1 D: 1 K/D: 4.0 </SubHeaders>
+										<SubHeaders>Last Seen: 10/2/20</SubHeaders>
+										<SubHeaders>Rounds Won: 40</SubHeaders>
+									</CenterContents>
+								))}
 						</Grid.Column>
 						<Grid.Column>
 							<LoadingAnim />
