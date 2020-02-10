@@ -3,6 +3,8 @@ import React from "react"
 import { useWindowSize } from "../../hooks/useWindowSize"
 import styled from "styled-components"
 import "./LoadingScreen.css"
+import LoadingAnim from "./LoadingAnim"
+import { Grid } from "semantic-ui-react"
 
 const EXTERNAL_MARGIN = 50
 
@@ -40,46 +42,33 @@ const WrapperDiv = styled.div`
 	padding-top: ${EXTERNAL_MARGIN / 2}px;
 `
 
+const GridRow = styled(Grid.Row)`
+	@@@ {
+		// TODO
+	}
+`
+
 export default function LoadingScreen() {
 	const windowSize = useWindowSize()
 	return (
 		<WrapperDiv>
 			<ExternalDiv height={windowSize.height} width={windowSize.width}>
-				<table style={{ height: "90%" }}>
-					<tbody>
-						<tr>
-							<td className="styled-td">
-								<div className="logo-container">
-									<img
-										src="https://i.imgur.com/dj9zIsQ.png"
-										alt="Redux Logo"
-									></img>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div className="windows8">
-									<div className="wBall" id="wBall_1">
-										<div className="wInnerBall"></div>
-									</div>
-									<div className="wBall" id="wBall_2">
-										<div className="wInnerBall"></div>
-									</div>
-									<div className="wBall" id="wBall_3">
-										<div className="wInnerBall"></div>
-									</div>
-									<div className="wBall" id="wBall_4">
-										<div className="wInnerBall"></div>
-									</div>
-									<div className="wBall" id="wBall_5">
-										<div className="wInnerBall"></div>
-									</div>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+				<Grid columns="three" style={{ height: "90%", width: "90%" }}>
+					<GridRow>
+						<Grid.Column />
+						<Grid.Column>
+							<img src="https://i.imgur.com/dj9zIsQ.png" alt="Redux Logo"></img>
+						</Grid.Column>
+						<Grid.Column />
+					</GridRow>
+					<GridRow>
+						<Grid.Column />
+						<Grid.Column>
+							<LoadingAnim />
+						</Grid.Column>
+						<Grid.Column />
+					</GridRow>
+				</Grid>
 			</ExternalDiv>
 		</WrapperDiv>
 	)
