@@ -84,7 +84,11 @@ export default function LoadingScreen(props) {
 	console.log(map)
 	return (
 		<WrapperDiv>
-			<ExternalDiv height={windowSize.height} width={windowSize.width}>
+			<ExternalDiv
+				className="backup-external-div"
+				height={windowSize.height}
+				width={windowSize.width}
+			>
 				<Grid columns="three" style={{ height: "90%", width: "90%" }}>
 					<GridRow>
 						<Grid.Column></Grid.Column>
