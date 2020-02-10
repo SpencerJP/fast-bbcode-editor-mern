@@ -50,7 +50,7 @@ const CenterContents = props => {
 		<table width="100%" height="100%" valign="center">
 			{props.children &&
 				props.children.map(child => {
-					if (child.giveOwnRow) {
+					if (child && child.giveOwnRow) {
 						return (
 							<tr style={{ border: "none" }}>
 								<td style={{ textAlign: "left" }}>{child}</td>
@@ -99,7 +99,7 @@ export default function LoadingScreen(props) {
 								(process.env.NODE_ENV === "development" && (
 									<CenterContents>
 										<Header className="loading-screen-welcome">
-											Welcome Back!{" "}
+											Welcome Back!
 										</Header>
 										{steamid && <SteamSignature steamid={steamid} />}
 										<SubHeaders>Time Played: 56 Hours</SubHeaders>

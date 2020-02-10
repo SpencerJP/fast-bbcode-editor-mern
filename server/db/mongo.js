@@ -26,9 +26,11 @@ class MongoConnectionLayer {
 	async setupTables() {
 		this.playersModel = new Player(this.mongoose, {
 			_id: String, // steamid
-			name: String,
 			firstSeen: Date,
 			lastSeen: Date,
+			roundsWon: Number,
+			kills: Number,
+			deaths: Number,
 		})
 		this.playerSessionsModel = new PlayerSession(this.mongoose, {
 			player_id: String, // steamid
