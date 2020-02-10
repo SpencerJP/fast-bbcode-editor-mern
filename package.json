@@ -21,6 +21,7 @@
 		"node-fetch": "^2.6.0",
 		"promise-mysql": "^4.1.2",
 		"react": "^16.12.0",
+		"react-app-rewired": "^2.1.5",
 		"react-cookie": "^4.0.3",
 		"react-dom": "^16.12.0",
 		"react-media": "^1.10.0",
@@ -37,11 +38,11 @@
 		"use-query-params": "^0.6.0"
 	},
 	"scripts": {
-		"startserver": "npm install && cd client && env-cmd -f ../.env.local react-scripts build && cd ../server && env-cmd -f ../.env.local nodemon index.js --exec babel-node -- > stdout.txt 2> stderr.txt &",
-		"start": "npm install && cd client && env-cmd -f ../.env.local react-scripts build && cd ../server && env-cmd -f ../.env.local nodemon index.js --exec babel-node --",
+		"startserver": "npm install && cd client && env-cmd -f ../.env.local react-app-rewired build && cd ../server && env-cmd -f ../.env.local nodemon index.js --exec babel-node -- > stdout.txt 2> stderr.txt &",
+		"start": "npm install && cd client && env-cmd -f ../.env.local react-app-rewired build && cd ../server && env-cmd -f ../.env.local nodemon index.js --exec babel-node --",
 		"startexpress": "cd server && env-cmd -f ../.env.local nodemon index.js --exec babel-node --",
-		"startreact": "cd client && env-cmd -f ../.env.local react-scripts start",
-		"buildreact": "cd client && env-cmd -f ../.env.local react-scripts build",
+		"startreact": "cd client && env-cmd -f ../.env.local react-app-rewired start",
+		"buildreact": "cd client && env-cmd -f ../.env.local react-app-rewired build",
 		"test": "jest",
 		"ejectreact": "cd client && react-scripts eject"
 	},

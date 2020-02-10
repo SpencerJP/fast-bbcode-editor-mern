@@ -72,9 +72,17 @@ app.get("/mapicons/:mapString", function(req, res) {
 	})
 })
 //not gonna use this anymore, seems that polyfilling does the trick
-app.get("/awesomiumbackup", function(req, res) {
+// nevermind it doesn't
+app.get("/legacymotd", function(req, res) {
 	// if the client can't do modern javascript
-	res.sendFile("awesomiumbackup.html", {
+	res.sendFile("legacy/motdlegacy.html", {
+		root: path.join(__dirname, "../client/build/"),
+	})
+})
+
+app.get("/legacyloadingscreen", function(req, res) {
+	// if the client can't do modern javascript
+	res.sendFile("legacy/loadingscreenlegacy.html", {
 		root: path.join(__dirname, "../client/build/"),
 	})
 })

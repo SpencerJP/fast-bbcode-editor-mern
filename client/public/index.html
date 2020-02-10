@@ -39,12 +39,13 @@
 		<script>
 			window.REACT_APP_URL =
 				"%REACT_APP_URL%" /* hack to expose environment variable */
-			/* if (window.navigator.userAgent.indexOf("Awesomium") !== -1) { // used this before i realised you can just polyfill
-				// user is on awesomium
-				console.log(
-					"RUNLUA:global_loadBackupMOTD = true;if global_loadBackupMOTD then global_loadBackupMOTD=false; timer.Simple(3, function() ulx.alternateMOTD() end) end"
-				)
-			} */
+			if (window.navigator.userAgent.indexOf("Awesomium") !== -1) {
+				if (window.location.pathname.indexOf("loadingscreen") !== -1) {
+					window.location.replace("%PUBLIC_URL%" + "/legacyloadingscreen")
+				} else {
+					window.location.replace("%PUBLIC_URL%" + "/legacymotd")
+				}
+			}
 		</script>
 	</head>
 
