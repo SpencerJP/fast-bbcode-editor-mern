@@ -32,9 +32,7 @@ app.use(
 )
 app.use(cookieParser())
 
-if (process.env.NODE_ENV === "development") {
-	app.use("/api/jb", jailbreakApi)
-}
+// app.use("/api/jb", jailbreakApi)
 app.use("/api/discord", discordApi)
 app.use("/jailbreak", jailbreak)
 
