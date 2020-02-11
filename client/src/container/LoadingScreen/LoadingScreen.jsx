@@ -4,9 +4,9 @@ import { useWindowSize } from "../../hooks/useWindowSize"
 import styled from "styled-components"
 import "./LoadingScreen.css"
 import LoadingAnim from "./LoadingAnim"
-import { Grid, Header } from "semantic-ui-react"
+import { Grid } from "semantic-ui-react"
 import { useQueryParam, StringParam } from "use-query-params"
-import SteamSignature from "./SteamSignature"
+import { LoadingScreenPlayerInfo } from "./LoadingScreenPlayerInfo"
 
 const EXTERNAL_MARGIN = 50
 
@@ -44,38 +44,11 @@ const WrapperDiv = styled.div`
 	padding-top: ${EXTERNAL_MARGIN / 2}px;
 `
 
-const CenterContents = props => {
-	let secondMap = []
-	return (
-		<table width="100%" height="100%" valign="center">
-			{props.children &&
-				props.children.map(child => {
-					if (child && child.giveOwnRow) {
-						return (
-							<tr style={{ border: "none" }}>
-								<td style={{ textAlign: "left" }}>{child}</td>
-							</tr>
-						)
-					} else {
-						secondMap.push(child)
-						return null
-					}
-				})}
-			<tr>
-				<td style={{ textAlign: "left" }}>{secondMap}</td>
-			</tr>
-		</table>
-	)
-}
-
 const GridRow = styled(Grid.Row)`
 	@@@ {
 		// TODO
 	}
 `
-const SubHeaders = props => {
-	return <h4 className="loading-screen-sub-headers">{props.children}</h4>
-}
 export default function LoadingScreen(props) {
 	const windowSize = useWindowSize()
 	const [steamid] = useQueryParam("steamid", StringParam)
@@ -101,16 +74,7 @@ export default function LoadingScreen(props) {
 						<Grid.Column>
 							{!process.env.NODE_ENV ||
 								(process.env.NODE_ENV === "development" && (
-									<CenterContents>
-										<Header className="loading-screen-welcome">
-											Welcome Back!
-										</Header>
-										{steamid && <SteamSignature steamid={steamid} />}
-										<SubHeaders>Time Played: 56 Hours</SubHeaders>
-										<SubHeaders>K: 1 D: 1 K/D: 4.0 </SubHeaders>
-										<SubHeaders>Last Seen: 10/2/20</SubHeaders>
-										<SubHeaders>Rounds Won: 40</SubHeaders>
-									</CenterContents>
+									<LoadingScreenPlayerInfo steamid={steamid} />
 								))}
 						</Grid.Column>
 						<Grid.Column>

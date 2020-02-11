@@ -1,6 +1,7 @@
 import express from "express"
 import discordApi from "./api/discord"
 import jailbreak from "./routers/jailbreak"
+import jailbreakApi from "./api/jbapi"
 // import MySQLDB from "./db/mysql"
 import MongoDB from "./db/mongo"
 var cookieParser = require("cookie-parser")
@@ -31,6 +32,7 @@ app.use(
 )
 app.use(cookieParser())
 
+// app.use("/api/jb", jailbreakApi)
 app.use("/api/discord", discordApi)
 app.use("/jailbreak", jailbreak)
 

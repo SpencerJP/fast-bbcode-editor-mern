@@ -31,12 +31,14 @@ class MongoConnectionLayer {
 			roundsWon: Number,
 			kills: Number,
 			deaths: Number,
+			isInTheDiscord: Boolean,
+			isInTheSteamGroup: Boolean,
 		})
-		this.playerSessionsModel = new PlayerSession(this.mongoose, {
-			player_id: String, // steamid
-			timeJoined: Date,
-			timeLeft: Date,
-		})
+		// this.playerSessionsModel = new PlayerSession(this.mongoose, {
+		// 	player_id: String, // steamid
+		// 	timeJoined: Date,
+		// 	timeLeft: Date,
+		// })
 		this.mapsModel = new JBMap(this.mongoose, {
 			_id: String, // map filename
 			prisonerWins: Number,
