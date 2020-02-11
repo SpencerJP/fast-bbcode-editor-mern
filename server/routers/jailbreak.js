@@ -4,10 +4,10 @@ import fetch from "node-fetch"
 
 const router = Router()
 var jsonBodyParser = require("body-parser").json()
-var cookieParser = require("cookie-parser")
+// var cookieParser = require("cookie-parser")
 const mongoDB = MongoDB()
 
-router.use(cookieParser())
+// router.use(cookieParser())
 
 router.get("/rules", async (req, res) => {
 	try {
