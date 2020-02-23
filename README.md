@@ -1,5 +1,5 @@
 
-A live demo of this project is available at [Redux Servers](https://www.reduxservers.com/demo).
+A live demo of this project is available at [Redux Servers](http://www.reduxservers.com/demo).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
